@@ -9,4 +9,44 @@
     </url>
     
 
+    
+    <url>
+     <loc>https://cyent.github.io/ovs//install/</loc>
+     <lastmod>2017-11-08</lastmod>
+     <changefreq>daily</changefreq>
+    </url>
+    
+
+    
+    <url>
+     <loc>https://cyent.github.io/ovs//ovs_simple/</loc>
+     <lastmod>2017-11-08</lastmod>
+     <changefreq>daily</changefreq>
+    </url>
+    
+
+    
+    <url>
+     <loc>https://cyent.github.io/ovs//of_simple/</loc>
+     <lastmod>2017-11-08</lastmod>
+     <changefreq>daily</changefreq>
+    </url>
+    
+
+    
+        
+    <url>
+     <loc>https://cyent.github.io/ovs//appendix/doc/</loc>
+     <lastmod>2017-11-08</lastmod>
+     <changefreq>daily</changefreq>
+    </url>
+        
+    <url>
+     <loc>https://cyent.github.io/ovs//appendix/traffic/</loc>
+     <lastmod>2017-11-08</lastmod>
+     <changefreq>daily</changefreq>
+    </url>
+        
+    
+
 </urlset>

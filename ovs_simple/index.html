@@ -10,28 +10,28 @@
         <meta name="description" content="Open vSwitch学习笔记">
       
       
-        <link rel="canonical" href="https://cyent.github.io/ovs/">
+        <link rel="canonical" href="https://cyent.github.io/ovs/ovs_simple/">
       
       
         <meta name="author" content="cyent">
       
       
-        <link rel="shortcut icon" href="./assets/images/favicon.png">
+        <link rel="shortcut icon" href="../assets/images/favicon.png">
       
       <meta name="generator" content="mkdocs-0.16.3, mkdocs-material-1.10.1">
     
     
       
-        <title>ovs学习 - cyent笔记</title>
+        <title>三. ovs基本使用 - ovs学习 - cyent笔记</title>
       
     
     
-      <script src="./assets/javascripts/modernizr-e826f8942a.js"></script>
+      <script src="../assets/javascripts/modernizr-e826f8942a.js"></script>
     
     
-      <link rel="stylesheet" href="./assets/stylesheets/application-a20f419c8e.css">
+      <link rel="stylesheet" href="../assets/stylesheets/application-a20f419c8e.css">
       
-        <link rel="stylesheet" href="./assets/stylesheets/application-23f75ab9c7.palette.css">
+        <link rel="stylesheet" href="../assets/stylesheets/application-23f75ab9c7.palette.css">
       
     
     
@@ -84,7 +84,7 @@
             
               
             
-            一. 介绍
+            三. ovs基本使用
           
         </span>
       </div>
@@ -191,6 +191,30 @@
       
       
 
+
+  <li class="md-nav__item">
+    <a href=".." title="一. 介绍" class="md-nav__link">
+      一. 介绍
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../install/" title="二. 安装" class="md-nav__link">
+      二. 安装
+    </a>
+  </li>
+
+    
+      
+      
+      
+
   
 
 
@@ -198,37 +222,54 @@
     
     <input class="md-toggle md-nav__toggle" data-md-toggle="toc" type="checkbox" id="toc">
     
-      
-    
     
       <label class="md-nav__link md-nav__link--active" for="toc">
-        一. 介绍
+        三. ovs基本使用
       </label>
     
-    <a href="." title="一. 介绍" class="md-nav__link md-nav__link--active">
-      一. 介绍
+    <a href="./" title="三. ovs基本使用" class="md-nav__link md-nav__link--active">
+      三. ovs基本使用
     </a>
     
       
 <nav class="md-nav md-nav--secondary">
   
   
-    
-  
   
     <label class="md-nav__title" for="toc">Table of contents</label>
     <ul class="md-nav__list" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#commands" title="Commands" class="md-nav__link">
-    Commands
+  <a href="#2vm" title="同宿主，同子网的2台VM互通" class="md-nav__link">
+    同宿主，同子网的2台VM互通
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#project-layout" title="Project layout" class="md-nav__link">
-    Project layout
+  <a href="#_1" title="同宿主，不同子网之间隔离（分别桥接）" class="md-nav__link">
+    同宿主，不同子网之间隔离（分别桥接）
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#tag" title="同宿主，不同子网之间隔离（打tag）" class="md-nav__link">
+    同宿主，不同子网之间隔离（打tag）
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_2" title="不同宿主，同子网互通" class="md-nav__link">
+    不同宿主，同子网互通
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_3" title="同宿主，不同桥接之间二层互通" class="md-nav__link">
+    同宿主，不同桥接之间二层互通
   </a>
   
 </li>
@@ -248,31 +289,7 @@
 
 
   <li class="md-nav__item">
-    <a href="install/" title="二. 安装" class="md-nav__link">
-      二. 安装
-    </a>
-  </li>
-
-    
-      
-      
-      
-
-
-  <li class="md-nav__item">
-    <a href="ovs_simple/" title="三. ovs基本使用" class="md-nav__link">
-      三. ovs基本使用
-    </a>
-  </li>
-
-    
-      
-      
-      
-
-
-  <li class="md-nav__item">
-    <a href="of_simple/" title="四. openflow基本使用" class="md-nav__link">
+    <a href="../of_simple/" title="四. openflow基本使用" class="md-nav__link">
       四. openflow基本使用
     </a>
   </li>
@@ -303,7 +320,7 @@
 
 
   <li class="md-nav__item">
-    <a href="appendix/doc/" title="1. 参考资料" class="md-nav__link">
+    <a href="../appendix/doc/" title="1. 参考资料" class="md-nav__link">
       1. 参考资料
     </a>
   </li>
@@ -315,7 +332,7 @@
 
 
   <li class="md-nav__item">
-    <a href="appendix/traffic/" title="2. ovs数据流量及限速" class="md-nav__link">
+    <a href="../appendix/traffic/" title="2. ovs数据流量及限速" class="md-nav__link">
       2. ovs数据流量及限速
     </a>
   </li>
@@ -340,22 +357,41 @@
 <nav class="md-nav md-nav--secondary">
   
   
-    
-  
   
     <label class="md-nav__title" for="toc">Table of contents</label>
     <ul class="md-nav__list" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#commands" title="Commands" class="md-nav__link">
-    Commands
+  <a href="#2vm" title="同宿主，同子网的2台VM互通" class="md-nav__link">
+    同宿主，同子网的2台VM互通
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#project-layout" title="Project layout" class="md-nav__link">
-    Project layout
+  <a href="#_1" title="同宿主，不同子网之间隔离（分别桥接）" class="md-nav__link">
+    同宿主，不同子网之间隔离（分别桥接）
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#tag" title="同宿主，不同子网之间隔离（打tag）" class="md-nav__link">
+    同宿主，不同子网之间隔离（打tag）
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_2" title="不同宿主，同子网互通" class="md-nav__link">
+    不同宿主，同子网互通
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_3" title="同宿主，不同桥接之间二层互通" class="md-nav__link">
+    同宿主，不同桥接之间二层互通
   </a>
   
 </li>
@@ -375,20 +411,91 @@
               
                 
                 
-                <h1 id="welcome-to-mkdocs">Welcome to MkDocs<a class="headerlink" href="#welcome-to-mkdocs" title="Permanent link">&para;</a></h1>
-<p>For full documentation visit <a href="http://mkdocs.org">mkdocs.org</a>.</p>
-<h2 id="commands">Commands<a class="headerlink" href="#commands" title="Permanent link">&para;</a></h2>
-<ul>
-<li><code>mkdocs new [dir-name]</code> - Create a new project.</li>
-<li><code>mkdocs serve</code> - Start the live-reloading docs server.</li>
-<li><code>mkdocs build</code> - Build the documentation site.</li>
-<li><code>mkdocs help</code> - Print this help message.</li>
-</ul>
-<h2 id="project-layout">Project layout<a class="headerlink" href="#project-layout" title="Permanent link">&para;</a></h2>
-<div class="codehilite"><pre><span></span>mkdocs.yml    # The configuration file.
-docs/
-    index.md  # The documentation homepage.
-    ...       # Other markdown pages, images and other files.
+                  <h1>三. ovs基本使用</h1>
+                
+                <h2 id="2vm"><strong>同宿主，同子网的2台VM互通</strong><a class="headerlink" href="#2vm" title="Permanent link">&para;</a></h2>
+<hr />
+<div class="codehilite"><pre><span></span># 建立桥接
+ovs-vsctl add-br br-int
+
+# 用veth模拟vm，将veth在宿主上的一端加入桥接
+ovs-vsctl add-port br-int poi-vm1
+ovs-vsctl add-port br-int poi-vm2
+</pre></div>
+
+<h2 id="_1"><strong>同宿主，不同子网之间隔离（分别桥接）</strong><a class="headerlink" href="#_1" title="Permanent link">&para;</a></h2>
+<hr />
+<div class="codehilite"><pre><span></span># 建立桥接，biv-100是子网1，biv-200是子网2
+ovs-vsctl add-br biv-100
+ovs-vsctl add-br biv-200
+
+# 用veth模拟vm，2个vm在宿主上的一端分别加入2个桥接
+ovs-vsctl add-port biv-100 poi-vm1
+ovs-vsctl add-port biv-200 poi-vm2
+</pre></div>
+
+<h2 id="tag"><strong>同宿主，不同子网之间隔离（打tag）</strong><a class="headerlink" href="#tag" title="Permanent link">&para;</a></h2>
+<hr />
+<div class="codehilite"><pre><span></span># 建立桥接
+ovs-vsctl add-br br-int
+
+# 用veth模拟vm，2个vm在宿主上的一端加入桥接，同时打tag
+ovs-vsctl add-port br-int poi-vm1 -- set port poi-vm1 tag=100
+ovs-vsctl add-port br-int poi-vm2 -- set port poi-vm2 tag=200
+</pre></div>
+
+<h2 id="_2"><strong>不同宿主，同子网互通</strong><a class="headerlink" href="#_2" title="Permanent link">&para;</a></h2>
+<hr />
+<p>假设一共有3台宿主，分别是172.16.1.136/137/138</p>
+<p>172.16.1.136配置：</p>
+<div class="codehilite"><pre><span></span># 建立桥接
+ovs-vsctl add-br biv-100
+
+# 创建2个vtep，分别是到137和到138的vxlan隧道，vni为100
+ovs-vsctl add-port biv-100 int-v100-137 -- set interface int-v100-137 type=vxlan options:remote_ip=172.16.1.137 options:key=100
+ovs-vsctl add-port biv-100 int-v100-138 -- set interface int-v100-138 type=vxlan options:remote_ip=172.16.1.138 options:key=100
+
+# 用veth模拟vm，vm在宿主上的一端加入桥接
+ovs-vsctl add-port biv-100 poi-vm1
+</pre></div>
+
+<p>172.16.1.137配置：</p>
+<div class="codehilite"><pre><span></span># 建立桥接
+ovs-vsctl add-br biv-100
+
+# 创建2个vtep，分别是到136和到138的vxlan隧道，vni为100
+ovs-vsctl add-port biv-100 int-v100-136 -- set interface int-v100-136 type=vxlan options:remote_ip=172.16.1.136 options:key=100
+ovs-vsctl add-port biv-100 int-v100-138 -- set interface int-v100-138 type=vxlan options:remote_ip=172.16.1.138 options:key=100
+
+# 用veth模拟vm，vm在宿主上的一端加入桥接
+ovs-vsctl add-port biv-100 poi-vm2
+</pre></div>
+
+<p>172.16.1.138配置：</p>
+<div class="codehilite"><pre><span></span># 建立桥接
+ovs-vsctl add-br biv-100
+
+# 创建2个vtep，分别是到136和到137的vxlan隧道，vni为100
+ovs-vsctl add-port biv-100 int-v100-136 -- set interface int-v100-136 type=vxlan options:remote_ip=172.16.1.136 options:key=100
+ovs-vsctl add-port biv-100 int-v100-137 -- set interface int-v100-137 type=vxlan options:remote_ip=172.16.1.137 options:key=100
+
+# 用veth模拟vm，vm在宿主上的一端加入桥接
+ovs-vsctl add-port biv-100 poi-vm3
+</pre></div>
+
+<h2 id="_3"><strong>同宿主，不同桥接之间二层互通</strong><a class="headerlink" href="#_3" title="Permanent link">&para;</a></h2>
+<hr />
+<div class="codehilite"><pre><span></span># 建立桥接
+ovs-vsctl add-br biv-100
+ovs-vsctl add-br biv-200
+
+# 创建patch port，2端分别桥接到biv-100和biv-200
+ovs-vsctl add-port biv-100 patch-to-200 -- set interface patch-to-200 type=patch -- set interface patch-to-200 options:peer=patch-to-100
+ovs-vsctl add-port biv-200 patch-to-100 -- set interface patch-to-100 type=patch -- set interface patch-to-100 options:peer=patch-to-200
+
+# 用veth模拟vm，vm在宿主的一端加入桥接
+ovs-vsctl add-port biv-100 poi-vm1
+ovs-vsctl add-port biv-200 poi-vm2
 </pre></div>
                 
                   
@@ -408,14 +515,28 @@ docs/
     <div class="md-footer-nav">
       <nav class="md-footer-nav__inner md-grid">
         
+          <a href="../install/" title="二. 安装" class="md-flex md-footer-nav__link md-footer-nav__link--prev" rel="prev">
+            <div class="md-flex__cell md-flex__cell--shrink">
+              <i class="md-icon md-icon--arrow-back md-footer-nav__button"></i>
+            </div>
+            <div class="md-flex__cell md-flex__cell--stretch md-footer-nav__title">
+              <span class="md-flex__ellipsis">
+                <span class="md-footer-nav__direction">
+                  Previous
+                </span>
+                二. 安装
+              </span>
+            </div>
+          </a>
         
-          <a href="install/" title="二. 安装" class="md-flex md-footer-nav__link md-footer-nav__link--next" rel="next">
+        
+          <a href="../of_simple/" title="四. openflow基本使用" class="md-flex md-footer-nav__link md-footer-nav__link--next" rel="next">
             <div class="md-flex__cell md-flex__cell--stretch md-footer-nav__title">
               <span class="md-flex__ellipsis">
                 <span class="md-footer-nav__direction">
                   Next
                 </span>
-                二. 安装
+                四. openflow基本使用
               </span>
             </div>
             <div class="md-flex__cell md-flex__cell--shrink">
@@ -453,14 +574,14 @@ docs/
       
     </div>
     
-      <script src="./assets/javascripts/application-f3ab9e5ff8.js"></script>
+      <script src="../assets/javascripts/application-f3ab9e5ff8.js"></script>
       
       
-      <script>app.initialize({url:{base:"."}})</script>
+      <script>app.initialize({url:{base:".."}})</script>
       
-        <script src="./js/extra.js"></script>
+        <script src="../js/extra.js"></script>
       
-        <script src="./js/baidu-tongji.js"></script>
+        <script src="../js/baidu-tongji.js"></script>
       
         <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-MML-AM_CHTML"></script>
       

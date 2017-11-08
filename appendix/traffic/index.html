@@ -10,26 +10,28 @@
         <meta name="description" content="Open vSwitch学习笔记">
       
       
+        <link rel="canonical" href="https://cyent.github.io/ovs/appendix/traffic/">
+      
       
         <meta name="author" content="cyent">
       
       
-        <link rel="shortcut icon" href="/ovs/assets/images/favicon.png">
+        <link rel="shortcut icon" href="../../assets/images/favicon.png">
       
       <meta name="generator" content="mkdocs-0.16.3, mkdocs-material-1.10.1">
     
     
       
-        <title>ovs学习 - cyent笔记</title>
+        <title>2. ovs数据流量及限速 - ovs学习 - cyent笔记</title>
       
     
     
-      <script src="/ovs/assets/javascripts/modernizr-e826f8942a.js"></script>
+      <script src="../../assets/javascripts/modernizr-e826f8942a.js"></script>
     
     
-      <link rel="stylesheet" href="/ovs/assets/stylesheets/application-a20f419c8e.css">
+      <link rel="stylesheet" href="../../assets/stylesheets/application-a20f419c8e.css">
       
-        <link rel="stylesheet" href="/ovs/assets/stylesheets/application-23f75ab9c7.palette.css">
+        <link rel="stylesheet" href="../../assets/stylesheets/application-23f75ab9c7.palette.css">
       
     
     
@@ -80,7 +82,13 @@
         <span class="md-flex__ellipsis md-header-nav__title">
           
             
-            ovs学习 - cyent笔记
+              
+                <span class="md-header-nav__parent">
+                  五. 附录
+                </span>
+              
+            
+            2. ovs数据流量及限速
           
         </span>
       </div>
@@ -189,7 +197,7 @@
 
 
   <li class="md-nav__item">
-    <a href="/ovs/" title="一. 介绍" class="md-nav__link">
+    <a href="../.." title="一. 介绍" class="md-nav__link">
       一. 介绍
     </a>
   </li>
@@ -201,7 +209,7 @@
 
 
   <li class="md-nav__item">
-    <a href="/ovs/install/" title="二. 安装" class="md-nav__link">
+    <a href="../../install/" title="二. 安装" class="md-nav__link">
       二. 安装
     </a>
   </li>
@@ -213,7 +221,7 @@
 
 
   <li class="md-nav__item">
-    <a href="/ovs/ovs_simple/" title="三. ovs基本使用" class="md-nav__link">
+    <a href="../../ovs_simple/" title="三. ovs基本使用" class="md-nav__link">
       三. ovs基本使用
     </a>
   </li>
@@ -225,7 +233,7 @@
 
 
   <li class="md-nav__item">
-    <a href="/ovs/of_simple/" title="四. openflow基本使用" class="md-nav__link">
+    <a href="../../of_simple/" title="四. openflow基本使用" class="md-nav__link">
       四. openflow基本使用
     </a>
   </li>
@@ -235,10 +243,12 @@
       
       
 
+  
 
-  <li class="md-nav__item md-nav__item--nested">
+
+  <li class="md-nav__item md-nav__item--active md-nav__item--nested">
     
-      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-5" type="checkbox" id="nav-5">
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-5" type="checkbox" id="nav-5" checked>
     
     <label class="md-nav__link" for="nav-5">
       五. 附录
@@ -256,7 +266,7 @@
 
 
   <li class="md-nav__item">
-    <a href="/ovs/appendix/doc/" title="1. 参考资料" class="md-nav__link">
+    <a href="../doc/" title="1. 参考资料" class="md-nav__link">
       1. 参考资料
     </a>
   </li>
@@ -266,11 +276,18 @@
           
           
 
+  
 
-  <li class="md-nav__item">
-    <a href="/ovs/appendix/traffic/" title="2. ovs数据流量及限速" class="md-nav__link">
+
+  <li class="md-nav__item md-nav__item--active">
+    
+    <input class="md-toggle md-nav__toggle" data-md-toggle="toc" type="checkbox" id="toc">
+    
+    
+    <a href="./" title="2. ovs数据流量及限速" class="md-nav__link md-nav__link--active">
       2. ovs数据流量及限速
     </a>
+    
   </li>
 
         
@@ -286,12 +303,36 @@
               </div>
             
             
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="toc">
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+<nav class="md-nav md-nav--secondary">
+  
+  
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
           
           <div class="md-content">
             <article class="md-content__inner md-typeset">
               
-  <h1>404 - Not found</h1>
-
+                
+                
+                  <h1>2. ovs数据流量及限速</h1>
+                
+                <p><img alt="" src="../../img/traffic.png" /></p>
+<p>在ovs里，对port只有egress限速，对interface只有ingress限速</p>
+<p>参考：<a href="http://openvswitch.org/support/dist-docs/ovs-vswitchd.conf.db.5.html">http://openvswitch.org/support/dist-docs/ovs-vswitchd.conf.db.5.html</a></p>
+<p>ingress_policing_rate就是带宽入口限速，超过的丢包处理</p>
+<p>ingress_policing_burst 在ingress_policing_rate之上的入口突发流量限制，该值最少也要等于该interface的MTU值，最好设置为ingress_policing_rate的&gt;=10%，建议为10%（对TCP很重要，TCP需要对丢包作出反应，而且设置为10%后tcp流量的上限才会更接近ingress_policing_rate值）</p>
+                
+                  
+                
+              
               
                 
               
@@ -302,6 +343,27 @@
       
         
 <footer class="md-footer">
+  
+    <div class="md-footer-nav">
+      <nav class="md-footer-nav__inner md-grid">
+        
+          <a href="../doc/" title="1. 参考资料" class="md-flex md-footer-nav__link md-footer-nav__link--prev" rel="prev">
+            <div class="md-flex__cell md-flex__cell--shrink">
+              <i class="md-icon md-icon--arrow-back md-footer-nav__button"></i>
+            </div>
+            <div class="md-flex__cell md-flex__cell--stretch md-footer-nav__title">
+              <span class="md-flex__ellipsis">
+                <span class="md-footer-nav__direction">
+                  Previous
+                </span>
+                1. 参考资料
+              </span>
+            </div>
+          </a>
+        
+        
+      </nav>
+    </div>
   
   <div class="md-footer-meta md-typeset">
     <div class="md-footer-meta__inner md-grid">
@@ -330,14 +392,14 @@
       
     </div>
     
-      <script src="/ovs/assets/javascripts/application-f3ab9e5ff8.js"></script>
+      <script src="../../assets/javascripts/application-f3ab9e5ff8.js"></script>
       
       
-      <script>app.initialize({url:{base:"/ovs"}})</script>
+      <script>app.initialize({url:{base:"../.."}})</script>
       
-        <script src="/ovs/js/extra.js"></script>
+        <script src="../../js/extra.js"></script>
       
-        <script src="/ovs/js/baidu-tongji.js"></script>
+        <script src="../../js/baidu-tongji.js"></script>
       
         <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-MML-AM_CHTML"></script>
       
