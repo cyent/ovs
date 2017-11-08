@@ -55,3 +55,9 @@ extra_javascript:
 
 pages:
     - 一. 介绍: index.md
+    - 二. 安装: install.md
+    - 三. ovs基本使用: ovs_simple.md
+    - 四. openflow基本使用: of_simple.md
+    - 五. 附录:
+        - 1. 参考资料: appendix/doc.md
+        - 2. ovs数据流量及限速: appendix/traffic.md
