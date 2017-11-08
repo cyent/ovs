@@ -235,9 +235,68 @@
     <input class="md-toggle md-nav__toggle" data-md-toggle="toc" type="checkbox" id="toc">
     
     
+      <label class="md-nav__link md-nav__link--active" for="toc">
+        四. openflow基本使用
+      </label>
+    
     <a href="./" title="四. openflow基本使用" class="md-nav__link md-nav__link--active">
       四. openflow基本使用
     </a>
+    
+      
+<nav class="md-nav md-nav--secondary">
+  
+  
+  
+    <label class="md-nav__title" for="toc">Table of contents</label>
+    <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#_1" title="查看" class="md-nav__link">
+    查看
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_2" title="流表操作" class="md-nav__link">
+    流表操作
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_3" title="默认规则" class="md-nav__link">
+    默认规则
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_4" title="添加规则" class="md-nav__link">
+    添加规则
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_5" title="流表参数详解" class="md-nav__link">
+    流表参数详解
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+      
+      
+    </ul>
+  
+</nav>
     
   </li>
 
@@ -305,6 +364,54 @@
   
   
   
+    <label class="md-nav__title" for="toc">Table of contents</label>
+    <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#_1" title="查看" class="md-nav__link">
+    查看
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_2" title="流表操作" class="md-nav__link">
+    流表操作
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_3" title="默认规则" class="md-nav__link">
+    默认规则
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_4" title="添加规则" class="md-nav__link">
+    添加规则
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_5" title="流表参数详解" class="md-nav__link">
+    流表参数详解
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+      
+      
+    </ul>
+  
 </nav>
                   </div>
                 </div>
@@ -318,7 +425,88 @@
                 
                   <h1>四. openflow基本使用</h1>
                 
-                
+                <h2 id="_1"><strong>查看</strong><a class="headerlink" href="#_1" title="Permanent link">&para;</a></h2>
+<hr />
+<div class="codehilite"><pre><span></span># 查看openflow端口信息
+ovs-ofctl show ovs-switch
+
+# 查看openflow端口编号
+ovs-vsctl get interface p0 ofport
+
+# 查看datapath
+ovs-dpctl show
+
+# 查看流表
+ovs-ofctl dump-flows ovs-switch
+</pre></div>
+
+<h2 id="_2"><strong>流表操作</strong><a class="headerlink" href="#_2" title="Permanent link">&para;</a></h2>
+<hr />
+<h3 id="_3"><strong>默认规则</strong><a class="headerlink" href="#_3" title="Permanent link">&para;</a></h3>
+<p>每个交换机创建之后默认都有一条流表规则，用于允许所有流量通过</p>
+<div class="codehilite"><pre><span></span>NXST_FLOW reply (xid=0x4):
+<span class="hll"> cookie=0x0, duration=1588.919s, table=0, n_packets=50, n_bytes=3260, idle_age=0, priority=0 actions=NORMAL
+</span></pre></div>
+
+<p>加亮这条就是默认的流表，如果这条删掉，那么当其他条目都没匹配到的时候，数据包就会被丢弃</p>
+<h3 id="_4"><strong>添加规则</strong><a class="headerlink" href="#_4" title="Permanent link">&para;</a></h3>
+<div class="codehilite"><pre><span></span># 屏蔽所有进入 OVS 的以太网广播数据包
+ovs-ofctl add-flow ovs-switch &quot;table=0, dl_src=01:00:00:00:00:00/01:00:00:00:00:00, actions=drop&quot;
+</pre></div>
+
+<h3 id="_5"><strong>流表参数详解</strong><a class="headerlink" href="#_5" title="Permanent link">&para;</a></h3>
+<div class="codehilite"><pre><span></span>ovs-ofctl dump-flows ovs-switch
+</pre></div>
+
+<p>输出</p>
+<div class="codehilite"><pre><span></span>NXST_FLOW reply (xid=0x4):
+cookie=0x0, duration=7.672s, table=0, n_packets=0, n_bytes=0, idle_age=7, priority=0 actions=NORMAL
+</pre></div>
+
+<ul>
+<li>
+<p>cookie: 不了解，官方manpage解释如下</p>
+<details class="note"><summary>manpage</summary><div class="codehilite"><pre><span></span>An opaque identifier called a cookie can be used as a handle to identify a set of flows:
+
+cookie=value
+    A cookie can be associated with a flow using the add-flow, add-flows, and mod-flows commands.  value can be any 64-bit number and need not be unique among flows. If this field is omitted, a default cookie value of 0 is used.
+
+cookie=value/mask
+    When using NXM, the cookie can be used as a handle for querying, modifying, and deleting flows. value and mask may be supplied for the del-flows, mod-flows, dump-flows, and dump-aggregate commands to limit matching cookies. A 1-bit in mask indicates that the corresponding bit in cookie must match exactly, and a 0-bit wildcards that bit. A mask of -1 may be used to exactly match a cookie.
+
+    The  mod-flows  command can update the cookies of flows that match a cookie by specifying the cookie field twice (once with a mask for matching and once without to indicate the new value):
+
+    ovs-ofctl mod-flows br0 cookie=1,actions=normal
+        Change all flows&#39; cookies to 1 and change their actions to normal.
+
+    ovs-ofctl mod-flows br0 cookie=1/-1,cookie=2,actions=normal
+        Update cookies with a value of 1 to 2 and change their actions to normal.
+
+    The ability to match on cookies was added in Open vSwitch 1.5.0.
+</pre></div>
+</details></li>
+<li>
+<p>duration: 该条目创建多久了</p>
+</li>
+<li>
+<p>table: 该条目所属table</p>
+</li>
+<li>
+<p>n_packets: 匹配了多少个包，注意是匹配，即如果该条目有被查询过，但是没匹配上，那么数值是不会增加的</p>
+</li>
+<li>
+<p>n_bytes: 匹配的所有包的大小总和，注意是匹配，即如果该条目有被查询过，但是没匹配上，那么数值是不会增加的</p>
+</li>
+<li>
+<p>idle_age: 该条目多久没被匹配了，注意是匹配，即如果该条目有被查询过，但是没匹配上，那么数值是不会增加的</p>
+</li>
+<li>
+<p>priority: 表内条目优先级，0-65535，数字越过越优先，不指定优先级则为32768，相同优先级的话，先插入的优先（dump-flows结果中靠上的优先）</p>
+</li>
+<li>
+<p>actions: 匹配之后的操作</p>
+</li>
+</ul>
                 
                   
                 
