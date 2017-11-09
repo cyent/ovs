@@ -87,8 +87,13 @@
         }, 
         {
             "location": "/appendix/doc/", 
-            "text": "ovs\n\n\n\n\nhttp://blog.csdn.net/sqx2011/article/details/39344869\n\n\n\n\nopenflow\n\n\n\n\nhttps://www.ibm.com/developerworks/cn/cloud/library/1401_zhaoyi_openswitch/index.html\n\n\n\n\novn\n\n\n\n\n\n\nhttp://www.sdnlab.com/18600.html\n\n\n\n\n\n\nhttp://blog.csdn.net/zhengmx100/article/details/71698641", 
+            "text": "ovs\n\n\n\n\nhttp://blog.csdn.net/sqx2011/article/details/39344869\n\n\n\n\nopenflow\n\n\n\n\nhttps://www.ibm.com/developerworks/cn/cloud/library/1401_zhaoyi_openswitch/index.html\n\n\n\n\novn\n\n\n\n\n\n\nhttp://www.sdnlab.com/18600.html\n\n\n\n\n\n\nhttp://blog.csdn.net/zhengmx100/article/details/71698641\n\n\n\n\n\n\nmanpage\n\n\n\n\novs-vsctl\u7684options\uff1aman ovs-vswitchd.conf.db\n\n\novs-ofctl\u914d\u7f6e\u6d41\u8868\u7684actions\uff1aman ovs-ofctl\n\n\nopenflow\u6d41\u8868\u5339\u914d\u53c2\u6570\uff1aman ovs-fields", 
             "title": "1. \u53c2\u8003\u8d44\u6599"
+        }, 
+        {
+            "location": "/appendix/doc/#manpage", 
+            "text": "ovs-vsctl\u7684options\uff1aman ovs-vswitchd.conf.db  ovs-ofctl\u914d\u7f6e\u6d41\u8868\u7684actions\uff1aman ovs-ofctl  openflow\u6d41\u8868\u5339\u914d\u53c2\u6570\uff1aman ovs-fields", 
+            "title": "manpage"
         }, 
         {
             "location": "/appendix/traffic/", 
