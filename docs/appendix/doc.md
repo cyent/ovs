@@ -11,3 +11,13 @@ ovn
 - http://www.sdnlab.com/18600.html
 
 - http://blog.csdn.net/zhengmx100/article/details/71698641
+
+## **manpage**
+
+---
+
+ovs-vsctl的options：man ovs-vswitchd.conf.db
+
+ovs-ofctl配置流表的actions：man ovs-ofctl
+
+openflow流表匹配参数：man ovs-fields
