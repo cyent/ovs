@@ -38,7 +38,7 @@ ovs-vsctl add-port br-int poi-vm1 -- set port poi-vm1 tag=100
 ovs-vsctl add-port br-int poi-vm2 -- set port poi-vm2 tag=200
 ```
 
-## **不同宿主，同子网互通**
+## **不同宿主，同子网互通（不同桥接）**
 
 ---
 
@@ -85,6 +85,54 @@ ovs-vsctl add-port biv-100 int-v100-137 -- set interface int-v100-137 type=vxlan
 
 # 用veth模拟vm，vm在宿主上的一端加入桥接
 ovs-vsctl add-port biv-100 poi-vm3
+```
+
+## **不同宿主，同子网互通（打tag）**
+
+---
+
+假设一共有3台宿主，分别是172.16.1.136/137/138
+
+172.16.1.136配置：
+
+```text
+# 建立桥接
+ovs-vsctl add-br br-int
+
+# 创建2个vtep，分别是到137和到138的vxlan隧道，vni为100
+ovs-vsctl add-port br-int int-v100-137 -- set interface int-v100-137 type=vxlan options:remote_ip=172.16.1.137 options:key=100
+ovs-vsctl add-port br-int int-v100-138 -- set interface int-v100-138 type=vxlan options:remote_ip=172.16.1.138 options:key=100
+
+# 用veth模拟vm，vm在宿主上的一端加入桥接
+ovs-vsctl add-port br-int poi-vm1
+```
+
+172.16.1.137配置：
+
+```text
+# 建立桥接
+ovs-vsctl add-br br-int
+
+# 创建2个vtep，分别是到136和138的vxlan桥接，vni为100
+ovs-vsctl add-port br-int int-v100-136 -- set interface int-v100-136 type=vxlan options:remote_ip=172.16.1.136 options:key=100
+ovs-vsctl add-port br-int int-v100-138 -- set interface int-v100-138 type=vxlan options:remote_ip=172.16.1.138 options:key=100
+
+# 用veth模拟vm，vm在宿主上的一端加入桥接
+ovs-vsctl add-port br-int poi-vm2
+```
+
+172.16.1.138配置：
+
+```text
+# 建立桥接
+ovs-vsctl add-br br-int
+
+# 创建2个vtep，分别是到136和137的vxlan隧道，vni为100
+ovs-vsctl add-port br-int int-v100-136 -- set interface int-v100-136 type=vxlan options:remote_ip=172.16.1.136 options:key=100
+ovs-vsctl add-port br-int int-v100-137 -- set interface int-v100-137 type=vxlan options:remote_ip=172.16.1.137 options:key=100
+
+# 用veth模拟vm，vm在宿主上的一端加入桥接
+ovs-vsctl add-port br-int poi-vm3
 ```
 
 ## **同宿主，不同桥接之间二层互通**
