@@ -10,28 +10,28 @@
         <meta name="description" content="Open vSwitch学习笔记">
       
       
-        <link rel="canonical" href="https://cyent.github.io/ovs/of_simple/">
+        <link rel="canonical" href="https://cyent.github.io/ovs/appendix/neutron/">
       
       
         <meta name="author" content="cyent">
       
       
-        <link rel="shortcut icon" href="../assets/images/favicon.png">
+        <link rel="shortcut icon" href="../../assets/images/favicon.png">
       
       <meta name="generator" content="mkdocs-0.16.3, mkdocs-material-1.10.1">
     
     
       
-        <title>四. openflow基本使用 - ovs学习 - cyent笔记</title>
+        <title>4. Neutron流表分析 - ovs学习 - cyent笔记</title>
       
     
     
-      <script src="../assets/javascripts/modernizr-e826f8942a.js"></script>
+      <script src="../../assets/javascripts/modernizr-e826f8942a.js"></script>
     
     
-      <link rel="stylesheet" href="../assets/stylesheets/application-a20f419c8e.css">
+      <link rel="stylesheet" href="../../assets/stylesheets/application-a20f419c8e.css">
       
-        <link rel="stylesheet" href="../assets/stylesheets/application-23f75ab9c7.palette.css">
+        <link rel="stylesheet" href="../../assets/stylesheets/application-23f75ab9c7.palette.css">
       
     
     
@@ -83,8 +83,12 @@
           
             
               
+                <span class="md-header-nav__parent">
+                  五. 附录
+                </span>
+              
             
-            四. openflow基本使用
+            4. Neutron流表分析
           
         </span>
       </div>
@@ -193,7 +197,7 @@
 
 
   <li class="md-nav__item">
-    <a href=".." title="一. 介绍" class="md-nav__link">
+    <a href="../.." title="一. 介绍" class="md-nav__link">
       一. 介绍
     </a>
   </li>
@@ -205,7 +209,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../install/" title="二. 安装" class="md-nav__link">
+    <a href="../../install/" title="二. 安装" class="md-nav__link">
       二. 安装
     </a>
   </li>
@@ -217,7 +221,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../ovs_simple/" title="三. ovs基本使用" class="md-nav__link">
+    <a href="../../ovs_simple/" title="三. ovs基本使用" class="md-nav__link">
       三. ovs基本使用
     </a>
   </li>
@@ -227,77 +231,11 @@
       
       
 
-  
 
-
-  <li class="md-nav__item md-nav__item--active">
-    
-    <input class="md-toggle md-nav__toggle" data-md-toggle="toc" type="checkbox" id="toc">
-    
-    
-      <label class="md-nav__link md-nav__link--active" for="toc">
-        四. openflow基本使用
-      </label>
-    
-    <a href="./" title="四. openflow基本使用" class="md-nav__link md-nav__link--active">
+  <li class="md-nav__item">
+    <a href="../../of_simple/" title="四. openflow基本使用" class="md-nav__link">
       四. openflow基本使用
     </a>
-    
-      
-<nav class="md-nav md-nav--secondary">
-  
-  
-  
-    <label class="md-nav__title" for="toc">Table of contents</label>
-    <ul class="md-nav__list" data-md-scrollfix>
-      
-        <li class="md-nav__item">
-  <a href="#_1" title="查看" class="md-nav__link">
-    查看
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#_2" title="流表操作" class="md-nav__link">
-    流表操作
-  </a>
-  
-    <nav class="md-nav">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#_3" title="默认规则" class="md-nav__link">
-    默认规则
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#_4" title="添加规则" class="md-nav__link">
-    添加规则
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#_5" title="流表参数详解" class="md-nav__link">
-    流表参数详解
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-      
-      
-    </ul>
-  
-</nav>
-    
   </li>
 
     
@@ -305,10 +243,12 @@
       
       
 
+  
 
-  <li class="md-nav__item md-nav__item--nested">
+
+  <li class="md-nav__item md-nav__item--active md-nav__item--nested">
     
-      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-5" type="checkbox" id="nav-5">
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-5" type="checkbox" id="nav-5" checked>
     
     <label class="md-nav__link" for="nav-5">
       五. 附录
@@ -326,7 +266,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../appendix/doc/" title="1. 参考资料" class="md-nav__link">
+    <a href="../doc/" title="1. 参考资料" class="md-nav__link">
       1. 参考资料
     </a>
   </li>
@@ -338,7 +278,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../appendix/traffic/" title="2. ovs数据流量及限速" class="md-nav__link">
+    <a href="../traffic/" title="2. ovs数据流量及限速" class="md-nav__link">
       2. ovs数据流量及限速
     </a>
   </li>
@@ -350,7 +290,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../appendix/nxm/" title="3. NXM" class="md-nav__link">
+    <a href="../nxm/" title="3. NXM" class="md-nav__link">
       3. NXM
     </a>
   </li>
@@ -360,11 +300,18 @@
           
           
 
+  
 
-  <li class="md-nav__item">
-    <a href="../appendix/neutron/" title="4. Neutron流表分析" class="md-nav__link">
+
+  <li class="md-nav__item md-nav__item--active">
+    
+    <input class="md-toggle md-nav__toggle" data-md-toggle="toc" type="checkbox" id="toc">
+    
+    
+    <a href="./" title="4. Neutron流表分析" class="md-nav__link md-nav__link--active">
       4. Neutron流表分析
     </a>
+    
   </li>
 
         
@@ -388,54 +335,6 @@
   
   
   
-    <label class="md-nav__title" for="toc">Table of contents</label>
-    <ul class="md-nav__list" data-md-scrollfix>
-      
-        <li class="md-nav__item">
-  <a href="#_1" title="查看" class="md-nav__link">
-    查看
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#_2" title="流表操作" class="md-nav__link">
-    流表操作
-  </a>
-  
-    <nav class="md-nav">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#_3" title="默认规则" class="md-nav__link">
-    默认规则
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#_4" title="添加规则" class="md-nav__link">
-    添加规则
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#_5" title="流表参数详解" class="md-nav__link">
-    流表参数详解
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-      
-      
-    </ul>
-  
 </nav>
                   </div>
                 </div>
@@ -447,88 +346,14 @@
               
                 
                 
-                  <h1>四. openflow基本使用</h1>
+                  <h1>4. Neutron流表分析</h1>
                 
-                <h2 id="_1"><strong>查看</strong><a class="headerlink" href="#_1" title="Permanent link">&para;</a></h2>
-<hr />
-<div class="codehilite"><pre><span></span># 查看openflow端口信息
-ovs-ofctl show ovs-switch
-
-# 查看openflow端口编号
-ovs-vsctl get interface p0 ofport
-
-# 查看datapath
-ovs-dpctl show
-
-# 查看流表
-ovs-ofctl dump-flows ovs-switch
-</pre></div>
-
-<h2 id="_2"><strong>流表操作</strong><a class="headerlink" href="#_2" title="Permanent link">&para;</a></h2>
-<hr />
-<h3 id="_3"><strong>默认规则</strong><a class="headerlink" href="#_3" title="Permanent link">&para;</a></h3>
-<p>每个交换机创建之后默认都有一条流表规则，用于允许所有流量通过</p>
-<div class="codehilite"><pre><span></span>NXST_FLOW reply (xid=0x4):
-<span class="hll"> cookie=0x0, duration=1588.919s, table=0, n_packets=50, n_bytes=3260, idle_age=0, priority=0 actions=NORMAL
-</span></pre></div>
-
-<p>加亮这条就是默认的流表，如果这条删掉，那么当其他条目都没匹配到的时候，数据包就会被丢弃</p>
-<h3 id="_4"><strong>添加规则</strong><a class="headerlink" href="#_4" title="Permanent link">&para;</a></h3>
-<div class="codehilite"><pre><span></span># 屏蔽所有进入 OVS 的以太网广播数据包
-ovs-ofctl add-flow ovs-switch &quot;table=0, dl_src=01:00:00:00:00:00/01:00:00:00:00:00, actions=drop&quot;
-</pre></div>
-
-<h3 id="_5"><strong>流表参数详解</strong><a class="headerlink" href="#_5" title="Permanent link">&para;</a></h3>
-<div class="codehilite"><pre><span></span>ovs-ofctl dump-flows ovs-switch
-</pre></div>
-
-<p>输出</p>
-<div class="codehilite"><pre><span></span>NXST_FLOW reply (xid=0x4):
-cookie=0x0, duration=7.672s, table=0, n_packets=0, n_bytes=0, idle_age=7, priority=0 actions=NORMAL
-</pre></div>
-
-<ul>
+                <ul>
 <li>
-<p>cookie: 不了解，官方manpage解释如下</p>
-<details class="note"><summary>manpage</summary><div class="codehilite"><pre><span></span>An opaque identifier called a cookie can be used as a handle to identify a set of flows:
-
-cookie=value
-    A cookie can be associated with a flow using the add-flow, add-flows, and mod-flows commands.  value can be any 64-bit number and need not be unique among flows. If this field is omitted, a default cookie value of 0 is used.
-
-cookie=value/mask
-    When using NXM, the cookie can be used as a handle for querying, modifying, and deleting flows. value and mask may be supplied for the del-flows, mod-flows, dump-flows, and dump-aggregate commands to limit matching cookies. A 1-bit in mask indicates that the corresponding bit in cookie must match exactly, and a 0-bit wildcards that bit. A mask of -1 may be used to exactly match a cookie.
-
-    The  mod-flows  command can update the cookies of flows that match a cookie by specifying the cookie field twice (once with a mask for matching and once without to indicate the new value):
-
-    ovs-ofctl mod-flows br0 cookie=1,actions=normal
-        Change all flows&#39; cookies to 1 and change their actions to normal.
-
-    ovs-ofctl mod-flows br0 cookie=1/-1,cookie=2,actions=normal
-        Update cookies with a value of 1 to 2 and change their actions to normal.
-
-    The ability to match on cookies was added in Open vSwitch 1.5.0.
-</pre></div>
-</details></li>
-<li>
-<p>duration: 该条目创建多久了</p>
+<p><a href="http://www.aboutyun.com/thread-13027-1-1.html">http://www.aboutyun.com/thread-13027-1-1.html</a></p>
 </li>
 <li>
-<p>table: 该条目所属table</p>
-</li>
-<li>
-<p>n_packets: 匹配了多少个包，注意是匹配，即如果该条目有被查询过，但是没匹配上，那么数值是不会增加的</p>
-</li>
-<li>
-<p>n_bytes: 匹配的所有包的大小总和，注意是匹配，即如果该条目有被查询过，但是没匹配上，那么数值是不会增加的</p>
-</li>
-<li>
-<p>idle_age: 该条目多久没被匹配了，注意是匹配，即如果该条目有被查询过，但是没匹配上，那么数值是不会增加的</p>
-</li>
-<li>
-<p>priority: 表内条目优先级，0-65535，数字越过越优先，不指定优先级则为32768，相同优先级的话，先插入的优先（dump-flows结果中靠上的优先）</p>
-</li>
-<li>
-<p>actions: 匹配之后的操作</p>
+<p><a href="http://blog.sina.com.cn/s/blog_6de3aa8a0102uy3t.html">http://blog.sina.com.cn/s/blog_6de3aa8a0102uy3t.html</a></p>
 </li>
 </ul>
                 
@@ -549,7 +374,7 @@ cookie=value/mask
     <div class="md-footer-nav">
       <nav class="md-footer-nav__inner md-grid">
         
-          <a href="../ovs_simple/" title="三. ovs基本使用" class="md-flex md-footer-nav__link md-footer-nav__link--prev" rel="prev">
+          <a href="../nxm/" title="3. NXM" class="md-flex md-footer-nav__link md-footer-nav__link--prev" rel="prev">
             <div class="md-flex__cell md-flex__cell--shrink">
               <i class="md-icon md-icon--arrow-back md-footer-nav__button"></i>
             </div>
@@ -558,25 +383,11 @@ cookie=value/mask
                 <span class="md-footer-nav__direction">
                   Previous
                 </span>
-                三. ovs基本使用
+                3. NXM
               </span>
             </div>
           </a>
         
-        
-          <a href="../appendix/doc/" title="1. 参考资料" class="md-flex md-footer-nav__link md-footer-nav__link--next" rel="next">
-            <div class="md-flex__cell md-flex__cell--stretch md-footer-nav__title">
-              <span class="md-flex__ellipsis">
-                <span class="md-footer-nav__direction">
-                  Next
-                </span>
-                1. 参考资料
-              </span>
-            </div>
-            <div class="md-flex__cell md-flex__cell--shrink">
-              <i class="md-icon md-icon--arrow-forward md-footer-nav__button"></i>
-            </div>
-          </a>
         
       </nav>
     </div>
@@ -608,14 +419,14 @@ cookie=value/mask
       
     </div>
     
-      <script src="../assets/javascripts/application-f3ab9e5ff8.js"></script>
+      <script src="../../assets/javascripts/application-f3ab9e5ff8.js"></script>
       
       
-      <script>app.initialize({url:{base:".."}})</script>
+      <script>app.initialize({url:{base:"../.."}})</script>
       
-        <script src="../js/extra.js"></script>
+        <script src="../../js/extra.js"></script>
       
-        <script src="../js/baidu-tongji.js"></script>
+        <script src="../../js/baidu-tongji.js"></script>
       
         <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-MML-AM_CHTML"></script>
       

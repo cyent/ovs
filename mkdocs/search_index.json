@@ -99,6 +99,16 @@
             "location": "/appendix/traffic/", 
             "text": "\u5728ovs\u91cc\uff0c\u5bf9port\u53ea\u6709egress\u9650\u901f\uff0c\u5bf9interface\u53ea\u6709ingress\u9650\u901f\n\n\n\u53c2\u8003\uff1a\nhttp://openvswitch.org/support/dist-docs/ovs-vswitchd.conf.db.5.html\n\n\ningress_policing_rate\u5c31\u662f\u5e26\u5bbd\u5165\u53e3\u9650\u901f\uff0c\u8d85\u8fc7\u7684\u4e22\u5305\u5904\u7406\n\n\ningress_policing_burst \u5728ingress_policing_rate\u4e4b\u4e0a\u7684\u5165\u53e3\u7a81\u53d1\u6d41\u91cf\u9650\u5236\uff0c\u8be5\u503c\u6700\u5c11\u4e5f\u8981\u7b49\u4e8e\u8be5interface\u7684MTU\u503c\uff0c\u6700\u597d\u8bbe\u7f6e\u4e3aingress_policing_rate\u7684\n=10%\uff0c\u5efa\u8bae\u4e3a10%\uff08\u5bf9TCP\u5f88\u91cd\u8981\uff0cTCP\u9700\u8981\u5bf9\u4e22\u5305\u4f5c\u51fa\u53cd\u5e94\uff0c\u800c\u4e14\u8bbe\u7f6e\u4e3a10%\u540etcp\u6d41\u91cf\u7684\u4e0a\u9650\u624d\u4f1a\u66f4\u63a5\u8fd1ingress_policing_rate\u503c\uff09", 
             "title": "2. ovs\u6570\u636e\u6d41\u91cf\u53ca\u9650\u901f"
+        }, 
+        {
+            "location": "/appendix/nxm/", 
+            "text": "\u70b9\u51fb\u6253\u5f00", 
+            "title": "3. NXM"
+        }, 
+        {
+            "location": "/appendix/neutron/", 
+            "text": "http://www.aboutyun.com/thread-13027-1-1.html\n\n\n\n\n\n\nhttp://blog.sina.com.cn/s/blog_6de3aa8a0102uy3t.html", 
+            "title": "4. Neutron\u6d41\u8868\u5206\u6790"
         }
     ]
 }

@@ -47,6 +47,18 @@
      <changefreq>daily</changefreq>
     </url>
         
+    <url>
+     <loc>https://cyent.github.io/ovs//appendix/nxm/</loc>
+     <lastmod>2017-11-13</lastmod>
+     <changefreq>daily</changefreq>
+    </url>
+        
+    <url>
+     <loc>https://cyent.github.io/ovs//appendix/neutron/</loc>
+     <lastmod>2017-11-13</lastmod>
+     <changefreq>daily</changefreq>
+    </url>
+        
     
 
 </urlset>
