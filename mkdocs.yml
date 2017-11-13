@@ -61,3 +61,5 @@ pages:
     - 五. 附录:
         - 1. 参考资料: appendix/doc.md
         - 2. ovs数据流量及限速: appendix/traffic.md
+        - 3. NXM: appendix/nxm.md
+        - 4. Neutron流表分析: appendix/neutron.md
