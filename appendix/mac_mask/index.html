@@ -320,9 +320,48 @@
     <input class="md-toggle md-nav__toggle" data-md-toggle="toc" type="checkbox" id="toc">
     
     
+      <label class="md-nav__link md-nav__link--active" for="toc">
+        5. MAC地址掩码
+      </label>
+    
     <a href="./" title="5. MAC地址掩码" class="md-nav__link md-nav__link--active">
       5. MAC地址掩码
     </a>
+    
+      
+<nav class="md-nav md-nav--secondary">
+  
+  
+  
+    <label class="md-nav__title" for="toc">Table of contents</label>
+    <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#ovs" title="ovs官方解释" class="md-nav__link">
+    ovs官方解释
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_1" title="单播、多播、广播" class="md-nav__link">
+    单播、多播、广播
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_2" title="掩码匹配算法详解" class="md-nav__link">
+    掩码匹配算法详解
+  </a>
+  
+</li>
+      
+      
+      
+    </ul>
+  
+</nav>
     
   </li>
 
@@ -347,6 +386,34 @@
   
   
   
+    <label class="md-nav__title" for="toc">Table of contents</label>
+    <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#ovs" title="ovs官方解释" class="md-nav__link">
+    ovs官方解释
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_1" title="单播、多播、广播" class="md-nav__link">
+    单播、多播、广播
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_2" title="掩码匹配算法详解" class="md-nav__link">
+    掩码匹配算法详解
+  </a>
+  
+</li>
+      
+      
+      
+    </ul>
+  
 </nav>
                   </div>
                 </div>
@@ -360,7 +427,9 @@
                 
                   <h1>5. MAC地址掩码</h1>
                 
-                <p>man ovs-fields</p>
+                <h2 id="ovs"><strong>ovs官方解释</strong><a class="headerlink" href="#ovs" title="Permanent link">&para;</a></h2>
+<hr />
+<p>man ovs-fields</p>
 <div class="codehilite"><pre><span></span>Open vSwitch 1.8 and later support arbitrary masks for source and/or destination. Earlier versions only support masking the destination with the following masks:
 
        01:00:00:00:00:00
@@ -376,6 +445,39 @@
        00:00:00:00:00:00
               Wildcard all bits (equivalent to dl_dst=*).
 </pre></div>
+
+<h2 id="_1"><strong>单播、多播、广播</strong><a class="headerlink" href="#_1" title="Permanent link">&para;</a></h2>
+<hr />
+<ul>
+<li>
+<p>单播: 最左边第一个字节的最后一个bit为0</p>
+<p><code>xxxxxxx0:xxxxxxxx:xxxxxxxx:xxxxxxxx:xxxxxxxx:xxxxxxxx</code></p>
+<p>可以用<code>00:00:00:00:00:00/01:00:00:00:00:00</code>来表示</p>
+</li>
+<li>
+<p>多播: 最左边第一个字节的最后一个bit为1，当所有bit都为1就是广播，即多播包括广播，就像正方形属于长方形，但正方形是独特的长方形，多播就像是长方形，广播就像是正方形</p>
+<p><code>xxxxxxx1:xxxxxxxx:xxxxxxxx:xxxxxxxx:xxxxxxxx:xxxxxxxx</code></p>
+<p>可以用<code>01:00:00:00:00:00/01:00:00:00:00:00</code>来表示，但不是只能这么表示，只要掩码里为0对应到的mac可以为任何数，即也可以写成<code>a1:bb:cc:dd:ee:ff/01:00:00:00:00:00</code>，或者<code>11:1b:cc:dd:ee:ff/11:10:08:00:00:00</code>，都是可以的</p>
+</li>
+<li>
+<p>广播: 所有bit均为1，因此就是<code>ff:ff:ff:ff:ff:ff/ff:ff:ff:ff:ff:ff</code></p>
+</li>
+</ul>
+<p>如果要匹配具体的mac地址，就把掩码写成<code>ff:ff:ff:ff:ff:ff</code>即可（如果不写掩码，默认就是全f）</p>
+<h2 id="_2"><strong>掩码匹配算法详解</strong><a class="headerlink" href="#_2" title="Permanent link">&para;</a></h2>
+<hr />
+<p>例如<code>11:1b:cc:dd:ee:ff/11:10:08:00:00:00</code>表示</p>
+<p>地址<code>11:1b:cc:dd:ee:ff</code> -&gt; 二进制为<code>00010001:00011011:11001100:11011101:11101110:11111111</code></p>
+<p>掩码<code>11:10:08:00:00:00</code> -&gt; 二进制为<code>00010001:00010000:00001000:00000000:00000000:00000000</code></p>
+<p>掩码中为1的，对应到地址的bit不变，掩码中为0的，对应到地址的bit可以为1也可为0，和ip/netmask的算法是类似的，因此这个例子中，可以表示的范围是：</p>
+<p>最小：<code>00010001:00010000:00001000:00000000:00000000:00000000</code></p>
+<p>最大：<code>11111111:11111111:11111111:11111111:11111111:11111111</code></p>
+<p>转换成16进制，则是：</p>
+<p>从<code>11:10:08:00:00:00</code>到<code>ff:ff:ff:ff:ff:ff</code></p>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>这个例子算出来的最小地址刚好和掩码一样，这只是个巧合</p>
+</div>
                 
                   
                 
