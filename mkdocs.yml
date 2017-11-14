@@ -56,10 +56,11 @@ extra_javascript:
 pages:
     - 一. 介绍: index.md
     - 二. 安装: install.md
-    - 三. ovs基本使用: ovs_simple.md
-    - 四. openflow基本使用: of_simple.md
+    - 三. ovs: ovs.md
+    - 四. openflow: openflow.md
     - 五. 附录:
         - 1. 参考资料: appendix/doc.md
         - 2. ovs数据流量及限速: appendix/traffic.md
         - 3. NXM: appendix/nxm.md
         - 4. Neutron流表分析: appendix/neutron.md
+        - 5. MAC地址掩码: appendix/mac_mask.md
