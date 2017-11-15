@@ -41,6 +41,8 @@ Open vSwitch 1.8 and later support arbitrary masks for source and/or destination
 
 如果要匹配具体的mac地址，就把掩码写成`ff:ff:ff:ff:ff:ff`即可（如果不写掩码，默认就是全f）
 
+**注意：如果想只匹配多播，但不包含广播，没有办法通过掩码做到，只能在写条目规则时候先匹配广播，再匹配多播**
+
 ## **掩码匹配算法详解**
 
 ---
