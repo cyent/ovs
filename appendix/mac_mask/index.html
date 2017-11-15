@@ -464,6 +464,7 @@
 </li>
 </ul>
 <p>如果要匹配具体的mac地址，就把掩码写成<code>ff:ff:ff:ff:ff:ff</code>即可（如果不写掩码，默认就是全f）</p>
+<p><strong>注意：如果想只匹配多播，但不包含广播，没有办法通过掩码做到，只能在写条目规则时候先匹配广播，再匹配多播</strong></p>
 <h2 id="_2"><strong>掩码匹配算法详解</strong><a class="headerlink" href="#_2" title="Permanent link">&para;</a></h2>
 <hr />
 <p>例如<code>11:1b:cc:dd:ee:ff/11:10:08:00:00:00</code>表示</p>
