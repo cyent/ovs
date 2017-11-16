@@ -312,6 +312,13 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#_7" title="流表匹配顺序" class="md-nav__link">
+    流表匹配顺序
+  </a>
+  
+</li>
+      
       
       
     </ul>
@@ -484,6 +491,13 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#_7" title="流表匹配顺序" class="md-nav__link">
+    流表匹配顺序
+  </a>
+  
+</li>
+      
       
       
     </ul>
@@ -601,6 +615,11 @@ ovs-ofctl add-flow br-tun &quot;table=0, dl_dst=01:00:00:00:00:00/01:00:00:00:00
 <p>等同于(ovs-ofctl就可以看到自动翻译成如下)</p>
 <div class="codehilite"><pre><span></span>actions=output:1,output:2,output:3,output:4
 </pre></div>
+
+<h2 id="_7"><strong>流表匹配顺序</strong><a class="headerlink" href="#_7" title="Permanent link">&para;</a></h2>
+<hr />
+<p>table -&gt; flow priority</p>
+<p>即先从table开始，从0到254，在table里有多个openflow条目，根据优先级priority最高的优先匹配</p>
                 
                   
                 
