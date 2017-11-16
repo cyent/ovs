@@ -115,3 +115,11 @@ actions=output:1,2,3,4
 ```text
 actions=output:1,output:2,output:3,output:4
 ```
+
+## **流表匹配顺序**
+
+---
+
+table -> flow priority
+
+即先从table开始，从0到254，在table里有多个openflow条目，根据优先级priority最高的优先匹配
