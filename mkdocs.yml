@@ -58,7 +58,9 @@ pages:
     - 二. 安装: install.md
     - 三. ovs: ovs.md
     - 四. openflow: openflow.md
-    - 五. 附录:
+    - 五. 实验:
+        - 1. 实验1: test/test1.md
+    - 六. 附录:
         - 1. 参考资料: appendix/doc.md
         - 2. ovs数据流量及限速: appendix/traffic.md
         - 3. NXM: appendix/nxm.md
