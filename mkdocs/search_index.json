@@ -131,6 +131,91 @@
             "title": "Node 3"
         }, 
         {
+            "location": "/test/stress/", 
+            "text": "环境说明\n\n\n\n\n服务器：Dell R730，网卡为板载集成电口万兆（支持udp offload），os为centos 7.3\n\n\n交换机：Dell万兆交换机\n\n\nkvm：qemu-kvm 1.5.3，网卡virtio，os为centos 7.3 4核8G\n\n\n内核参数：物理机、netns、kvm均不改变任何内核参数，并且iptables、ebtables、selinux均处于disable状态\n\n\n测试方法：使用iperf分别测试tcp和udp（只测试单播），每一个测试完成后均重启物理机\n\n\n测试命令：\n\n\n\n\n\n\ntcp\n\n\n服务端: iperf -s\n\n\n客户端: iperf -b 10G -t 300 -P 3 -c 目标ip\n\n\n\n\n\n\nudp\n\n\n服务端: iperf -u -s\n\n\n客户端: iperf -u -b 10G -t 300 -P 3 -c 目标ip\n\n\n\n\n\n\n同宿主\n\n\n\n\nbridge\n\n\n\n\n\n\nns - ns（veth）\n\n\ntcp:\n    ns1 10.7Gb/s\n    ns2 10.7Gb/s\nudp:\n    ns1 4.93Gb/s\n    ns2 4.93Gb/s\n\n\n\n\n环境\nbrctl addbr br1\nip link set br1 up\nip netns add ns1\nip netns add ns2\nip link add ns1-veth-in type veth peer name ns1-veth-out\nip link add ns2-veth-in type veth peer name ns2-veth-out\nip link set ns1-veth-in netns ns1\nip link set ns2-veth-in netns ns2\nip link set ns1-veth-out up\nip link set ns2-veth-out up\nip netns exec ns1 ip link set lo up\nip netns exec ns2 ip link set lo up\nip netns exec ns1 ifconfig ns1-veth-in 192.168.1.1 netmask 255.255.255.0 up\nip netns exec ns2 ifconfig ns2-veth-in 192.168.1.2 netmask 255.255.255.0 up\nbrctl addif br1 ns1-veth-out\nbrctl addif br1 ns2-veth-out\n\n\n\n\n\n\n\nkvm - kvm\n\n\ntcp:\n    vm1 5.94Gb/s\n    vm2 5.94Gb/s\nudp:\n    vm1 6.18Gb/s\n    vm2 4.84Gb/s\n\n\n\n\n\n\n\n\novs\n\n\n\n\n\n\nns - ns（veth）\n\n\ntcp:\n    ns1 10.7Gb/s\n    ns2 10.7Gb/s\nudp:\n    ns1 3.85Gb/s\n    ns2 3.85Gb/s\n\n\n\n\n环境\novs-vsctl add-br ovsbr\nip netns add ns1\nip netns add ns2\nip link add ns1-veth-in type veth peer name ns1-veth-out\nip link add ns2-veth-in type veth peer name ns2-veth-out\nip link set ns1-veth-in netns ns1\nip link set ns2-veth-in netns ns2\nip link set ns1-veth-out up\nip link set ns2-veth-out up\nip netns exec ns1 ip link set lo up\nip netns exec ns2 ip link set lo up\nip netns exec ns1 ifconfig ns1-veth-in 192.168.1.1 netmask 255.255.255.0 up\nip netns exec ns2 ifconfig ns2-veth-in 192.168.1.2 netmask 255.255.255.0 up\novs-vsctl add-port ovsbr ns1-veth-out\novs-vsctl add-port ovsbr ns2-veth-out\n\n\n\n\n\n\n\nns - ns（patch-port）\n\n\ntcp:\n    ns1 10.7Gb/s\n    ns2 10.7Gb/s\nudp:\n    ns1 Gb/s\n    ns2 Gb/s\n\n\n\n\n环境\novs-vsctl add-br ovsbr\novs-vsctl add-port ovsbr ns1 -- set interface ns1 type=internal\novs-vsctl add-port ovsbr ns2 -- set interface ns2 type=internal\nip netns add ns1\nip netns add ns2\nip link set ns1 netns ns1\nip link set ns2 netns ns2\nip netns exec ns1 ip link set lo up\nip netns exec ns2 ip link set lo up\nip netns exec ns1 ifconfig ns1 192.168.1.1 netmask 255.255.255.0 up\nip netns exec ns2 ifconfig ns2 192.168.1.2 netmask 255.255.255.0 up\n\n\n\n\n\n\n\nkvm - kvm\n\n\ntcp:\n    vm1 Gb/s\n    vm2 Gb/s\nudp:\n    vm1 Gb/s\n    vm2 Gb/s\n\n\n\n\n\n\n\n\n不同宿主\n\n\n\n\n基准\n\n\n\n\n\n\nem1 - em1\n\n\ndstat稳定在1179M（2端一样）\n\n\n\n\n\n\n\n\nbridge-\nem1 - em1\n-bridge（bridge为3层）\n\n\ndstat稳定在1179M（2端一样）\n\n\n\n\n\n\n\n\n无封装\n\n\nbridge\n\n\n\n\n\n\nns - ns（veth）\n\n\ntcp: iperf -b 10G -P 3（线程到3，带宽就打到了上限）\n宿主1 1179M（稳定），ns：1127M，ns iperf结果：9.40Gb/s\n宿主2 1179M（稳定），ns：1148M，ns iperf结果：9.39Gb/s\nudp: iperf -u -b 10G -P 2（线程到2，带宽就打到了上限）\n宿主1 1179M（稳定），ns：1626M-1738M，平均为13.8Gb/s\n宿主2 1179M（稳定），ns：927M-1174M，ns iperf结果：9.08Gb/s\n\n\n\n\n\n\n\n\nkvm - kvm\n\n\ntcp: iperf -b 10G -P 2（线程到2，再往上提升不明显，有时候还会更差）\n宿主1的vm 796-971（不稳定），iperf结果：7.26Gb/s\n宿主2的vm 806-984（不稳定），iperf结果：7.25Gb/s\n\n\n\n\n\n\n\n\novs\n\n\n\n\n\n\nns - ns（veth）\n\n\n\n\n\n\n\n\n\n\n\nns - ns（patch-port）\n\n\n\n\n\n\n\n\n\n\n\nkvm - kvm\n\n\n\n\n\n\n\n\n\n\n\nvxlan封装\n\n\nbridge\n\n\n\n\n\n\nns - ns（veth）\n\n\n\n\n\n\n\n\n\n\n\nkvm - kvm\n\n\n\n\n\n\n\n\n\n\n\novs\n\n\nem1 - - - vtep - ovsbr\n\n\n\n\n\n\nns - ns（veth）\n\n\n\n\n\n\n\n\n\n\n\nns - ns（patch-port）\n\n\n\n\n\n\n\n\n\n\n\nkvm - kvm\n\n\n\n\n\n\n\n\n\n\n\novs-bridge\n\n\nem1 - - - vtep - ovsbr - bridge\n\n\n\n\n\n\nns - ns（veth）\n\n\n\n\n\n\n\n\n\n\n\nns - ns（patch-port）\n\n\n\n\n\n\n\n\n\n\n\nkvm - kvm\n\n\n\n\n\n\n\n\n\n\n\n结论\n\n\n\n\n性能排行\n\n\nbridge和ovs性能对比", 
+            "title": "2. 性能测试"
+        }, 
+        {
+            "location": "/test/stress/#_1", 
+            "text": "服务器：Dell R730，网卡为板载集成电口万兆（支持udp offload），os为centos 7.3  交换机：Dell万兆交换机  kvm：qemu-kvm 1.5.3，网卡virtio，os为centos 7.3 4核8G  内核参数：物理机、netns、kvm均不改变任何内核参数，并且iptables、ebtables、selinux均处于disable状态  测试方法：使用iperf分别测试tcp和udp（只测试单播），每一个测试完成后均重启物理机  测试命令：    tcp  服务端: iperf -s  客户端: iperf -b 10G -t 300 -P 3 -c 目标ip    udp  服务端: iperf -u -s  客户端: iperf -u -b 10G -t 300 -P 3 -c 目标ip", 
+            "title": "环境说明"
+        }, 
+        {
+            "location": "/test/stress/#_2", 
+            "text": "", 
+            "title": "同宿主"
+        }, 
+        {
+            "location": "/test/stress/#bridge", 
+            "text": "ns - ns（veth）  tcp:\n    ns1 10.7Gb/s\n    ns2 10.7Gb/s\nudp:\n    ns1 4.93Gb/s\n    ns2 4.93Gb/s  环境 brctl addbr br1\nip link set br1 up\nip netns add ns1\nip netns add ns2\nip link add ns1-veth-in type veth peer name ns1-veth-out\nip link add ns2-veth-in type veth peer name ns2-veth-out\nip link set ns1-veth-in netns ns1\nip link set ns2-veth-in netns ns2\nip link set ns1-veth-out up\nip link set ns2-veth-out up\nip netns exec ns1 ip link set lo up\nip netns exec ns2 ip link set lo up\nip netns exec ns1 ifconfig ns1-veth-in 192.168.1.1 netmask 255.255.255.0 up\nip netns exec ns2 ifconfig ns2-veth-in 192.168.1.2 netmask 255.255.255.0 up\nbrctl addif br1 ns1-veth-out\nbrctl addif br1 ns2-veth-out    kvm - kvm  tcp:\n    vm1 5.94Gb/s\n    vm2 5.94Gb/s\nudp:\n    vm1 6.18Gb/s\n    vm2 4.84Gb/s", 
+            "title": "bridge"
+        }, 
+        {
+            "location": "/test/stress/#ovs", 
+            "text": "ns - ns（veth）  tcp:\n    ns1 10.7Gb/s\n    ns2 10.7Gb/s\nudp:\n    ns1 3.85Gb/s\n    ns2 3.85Gb/s  环境 ovs-vsctl add-br ovsbr\nip netns add ns1\nip netns add ns2\nip link add ns1-veth-in type veth peer name ns1-veth-out\nip link add ns2-veth-in type veth peer name ns2-veth-out\nip link set ns1-veth-in netns ns1\nip link set ns2-veth-in netns ns2\nip link set ns1-veth-out up\nip link set ns2-veth-out up\nip netns exec ns1 ip link set lo up\nip netns exec ns2 ip link set lo up\nip netns exec ns1 ifconfig ns1-veth-in 192.168.1.1 netmask 255.255.255.0 up\nip netns exec ns2 ifconfig ns2-veth-in 192.168.1.2 netmask 255.255.255.0 up\novs-vsctl add-port ovsbr ns1-veth-out\novs-vsctl add-port ovsbr ns2-veth-out    ns - ns（patch-port）  tcp:\n    ns1 10.7Gb/s\n    ns2 10.7Gb/s\nudp:\n    ns1 Gb/s\n    ns2 Gb/s  环境 ovs-vsctl add-br ovsbr\novs-vsctl add-port ovsbr ns1 -- set interface ns1 type=internal\novs-vsctl add-port ovsbr ns2 -- set interface ns2 type=internal\nip netns add ns1\nip netns add ns2\nip link set ns1 netns ns1\nip link set ns2 netns ns2\nip netns exec ns1 ip link set lo up\nip netns exec ns2 ip link set lo up\nip netns exec ns1 ifconfig ns1 192.168.1.1 netmask 255.255.255.0 up\nip netns exec ns2 ifconfig ns2 192.168.1.2 netmask 255.255.255.0 up    kvm - kvm  tcp:\n    vm1 Gb/s\n    vm2 Gb/s\nudp:\n    vm1 Gb/s\n    vm2 Gb/s", 
+            "title": "ovs"
+        }, 
+        {
+            "location": "/test/stress/#_3", 
+            "text": "", 
+            "title": "不同宿主"
+        }, 
+        {
+            "location": "/test/stress/#_4", 
+            "text": "em1 - em1  dstat稳定在1179M（2端一样）    bridge- em1 - em1 -bridge（bridge为3层）  dstat稳定在1179M（2端一样）", 
+            "title": "基准"
+        }, 
+        {
+            "location": "/test/stress/#_5", 
+            "text": "", 
+            "title": "无封装"
+        }, 
+        {
+            "location": "/test/stress/#bridge_1", 
+            "text": "ns - ns（veth）  tcp: iperf -b 10G -P 3（线程到3，带宽就打到了上限）\n宿主1 1179M（稳定），ns：1127M，ns iperf结果：9.40Gb/s\n宿主2 1179M（稳定），ns：1148M，ns iperf结果：9.39Gb/s\nudp: iperf -u -b 10G -P 2（线程到2，带宽就打到了上限）\n宿主1 1179M（稳定），ns：1626M-1738M，平均为13.8Gb/s\n宿主2 1179M（稳定），ns：927M-1174M，ns iperf结果：9.08Gb/s    kvm - kvm  tcp: iperf -b 10G -P 2（线程到2，再往上提升不明显，有时候还会更差）\n宿主1的vm 796-971（不稳定），iperf结果：7.26Gb/s\n宿主2的vm 806-984（不稳定），iperf结果：7.25Gb/s", 
+            "title": "bridge"
+        }, 
+        {
+            "location": "/test/stress/#ovs_1", 
+            "text": "ns - ns（veth）      ns - ns（patch-port）      kvm - kvm", 
+            "title": "ovs"
+        }, 
+        {
+            "location": "/test/stress/#vxlan", 
+            "text": "", 
+            "title": "vxlan封装"
+        }, 
+        {
+            "location": "/test/stress/#bridge_2", 
+            "text": "ns - ns（veth）      kvm - kvm", 
+            "title": "bridge"
+        }, 
+        {
+            "location": "/test/stress/#ovs_2", 
+            "text": "em1 - - - vtep - ovsbr    ns - ns（veth）      ns - ns（patch-port）      kvm - kvm", 
+            "title": "ovs"
+        }, 
+        {
+            "location": "/test/stress/#ovs-bridge", 
+            "text": "em1 - - - vtep - ovsbr - bridge    ns - ns（veth）      ns - ns（patch-port）      kvm - kvm", 
+            "title": "ovs-bridge"
+        }, 
+        {
+            "location": "/test/stress/#_6", 
+            "text": "", 
+            "title": "结论"
+        }, 
+        {
+            "location": "/test/stress/#_7", 
+            "text": "", 
+            "title": "性能排行"
+        }, 
+        {
+            "location": "/test/stress/#bridgeovs", 
+            "text": "", 
+            "title": "bridge和ovs性能对比"
+        }, 
+        {
             "location": "/appendix/doc/", 
             "text": "ovs\n\n\n\n\nhttp://blog.csdn.net/sqx2011/article/details/39344869\n\n\n\n\nopenflow\n\n\n\n\n\n\nhttps://www.ibm.com/developerworks/cn/cloud/library/1401_zhaoyi_openswitch/index.html\n\n\n\n\n\n\nhttp://www.rendoumi.com/open-vswitchzhong-ovs-ofctlde-xiang-xi-yong-fa/\n\n\n\n\n\n\novn\n\n\n\n\n\n\nhttp://www.sdnlab.com/18600.html\n\n\n\n\n\n\nhttp://blog.csdn.net/zhengmx100/article/details/71698641\n\n\n\n\n\n\nmanpage\n\n\n\n\novs-vsctl的options：man ovs-vswitchd.conf.db\n\n\novs-ofctl配置流表的actions：man ovs-ofctl\n\n\nopenflow流表匹配参数：man ovs-fields", 
             "title": "1. 参考资料"
