@@ -67,3 +67,4 @@ pages:
         - 3. NXM: appendix/nxm.md
         - 4. Neutron流表分析: appendix/neutron.md
         - 5. MAC地址掩码: appendix/mac_mask.md
+    - 七. 联系方式: contact.md
