@@ -429,6 +429,18 @@
   </li>
 
         
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../appendix/conntrack/" title="6. ovs模块会调用conntrack" class="md-nav__link">
+      6. ovs模块会调用conntrack
+    </a>
+  </li>
+
+        
       </ul>
     </nav>
   </li>
@@ -589,7 +601,14 @@ ovs-vsctl add-port biv-200 poi-vm2
 </ol>
 <h2 id="iptablesebtablesovs-port"><strong>iptables/ebtables对ovs port不起作用</strong><a class="headerlink" href="#iptablesebtablesovs-port" title="Permanent link">&para;</a></h2>
 <hr />
+<ol>
+<li>
 <p>经测试，使用iptables和ebtables对ovs端口不起任何作用，只对linux bridge的端口起作用</p>
+</li>
+<li>
+<p>linux bridge和ovs通过veth或ovs patch-port相连的话，iptables、ebtables对linux bridge这端的限制是有效的</p>
+</li>
+</ol>
                 
                   
                 

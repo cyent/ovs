@@ -421,6 +421,18 @@
   </li>
 
         
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../appendix/conntrack/" title="6. ovs模块会调用conntrack" class="md-nav__link">
+      6. ovs模块会调用conntrack
+    </a>
+  </li>
+
+        
       </ul>
     </nav>
   </li>
@@ -579,8 +591,8 @@ ovs-ofctl add-flow br-int <span class="s2">&quot;table=0, priority=1, in_port=</
 ovs-ofctl add-flow br-int <span class="s2">&quot;table=0, priority=1, in_port=</span><span class="si">${</span><span class="nv">vio1234567_ofport</span><span class="si">}</span><span class="s2">, actions=goto_table:2&quot;</span>
 
 <span class="c1">## 从vtep过来的数据包，扔给table 10处理</span>
-ovs-ofctl add-flow br-int <span class="s2">&quot;table=0, priority=1, in_port=</span><span class="si">${</span><span class="nv">vtep137_ofport</span><span class="si">}</span><span class="s2"> actions=goto_table:10&quot;</span>
-ovs-ofctl add-flow br-int <span class="s2">&quot;table=0, priority=1, in_port=</span><span class="si">${</span><span class="nv">vtep138_ofport</span><span class="si">}</span><span class="s2"> actions=goto_table:10&quot;</span>
+ovs-ofctl add-flow br-int <span class="s2">&quot;table=0, priority=1, in_port=</span><span class="si">${</span><span class="nv">vtep137_ofport</span><span class="si">}</span><span class="s2">, actions=goto_table:10&quot;</span>
+ovs-ofctl add-flow br-int <span class="s2">&quot;table=0, priority=1, in_port=</span><span class="si">${</span><span class="nv">vtep138_ofport</span><span class="si">}</span><span class="s2">, actions=goto_table:10&quot;</span>
 
 <span class="c1">## 其余DROP</span>
 ovs-ofctl add-flow br-int <span class="s2">&quot;table=0, priority=0, actions=drop&quot;</span>
@@ -588,10 +600,10 @@ ovs-ofctl add-flow br-int <span class="s2">&quot;table=0, priority=0, actions=dr
 
 <span class="c1"># table 2</span>
 <span class="c1">## 单播包，扔给table 20处理</span>
-ovs-ofctl add-flow br-int <span class="s2">&quot;table=2, priority=1, dl_dst=00:00:00:00:00:00/01:00:00:00:00:00 actions=goto_table:20&quot;</span>
+ovs-ofctl add-flow br-int <span class="s2">&quot;table=2, priority=1, dl_dst=00:00:00:00:00:00/01:00:00:00:00:00, actions=goto_table:20&quot;</span>
 
 <span class="c1">## 多播和广播包，扔给table 22处理</span>
-ovs-ofctl add-flow br-int <span class="s2">&quot;table=2, priority=1, dl_dst=01:00:00:00:00:00/01:00:00:00:00:00 actions=goto_table:22&quot;</span>
+ovs-ofctl add-flow br-int <span class="s2">&quot;table=2, priority=1, dl_dst=01:00:00:00:00:00/01:00:00:00:00:00, actions=goto_table:22&quot;</span>
 
 <span class="c1">## 其余DROP</span>
 ovs-ofctl add-flow br-int <span class="s2">&quot;table=2, priority=0, actions=drop&quot;</span>
@@ -745,8 +757,8 @@ ovs-ofctl add-flow br-int <span class="s2">&quot;table=0, priority=1, in_port=</
 ovs-ofctl add-flow br-int <span class="s2">&quot;table=0, priority=1, in_port=</span><span class="si">${</span><span class="nv">vio1234567_ofport</span><span class="si">}</span><span class="s2">, actions=goto_table:2&quot;</span>
 
 <span class="c1">## 从vtep过来的数据包，扔给table 10处理</span>
-ovs-ofctl add-flow br-int <span class="s2">&quot;table=0, priority=1, in_port=</span><span class="si">${</span><span class="nv">vtep136_ofport</span><span class="si">}</span><span class="s2"> actions=goto_table:10&quot;</span>
-ovs-ofctl add-flow br-int <span class="s2">&quot;table=0, priority=1, in_port=</span><span class="si">${</span><span class="nv">vtep138_ofport</span><span class="si">}</span><span class="s2"> actions=goto_table:10&quot;</span>
+ovs-ofctl add-flow br-int <span class="s2">&quot;table=0, priority=1, in_port=</span><span class="si">${</span><span class="nv">vtep136_ofport</span><span class="si">}</span><span class="s2">, actions=goto_table:10&quot;</span>
+ovs-ofctl add-flow br-int <span class="s2">&quot;table=0, priority=1, in_port=</span><span class="si">${</span><span class="nv">vtep138_ofport</span><span class="si">}</span><span class="s2">, actions=goto_table:10&quot;</span>
 
 <span class="c1">## 其余DROP</span>
 ovs-ofctl add-flow br-int <span class="s2">&quot;table=0, priority=0, actions=drop&quot;</span>
@@ -754,10 +766,10 @@ ovs-ofctl add-flow br-int <span class="s2">&quot;table=0, priority=0, actions=dr
 
 <span class="c1"># table 2</span>
 <span class="c1">## 单播包，扔给table 20处理</span>
-ovs-ofctl add-flow br-int <span class="s2">&quot;table=2, priority=1, dl_dst=00:00:00:00:00:00/01:00:00:00:00:00 actions=goto_table:20&quot;</span>
+ovs-ofctl add-flow br-int <span class="s2">&quot;table=2, priority=1, dl_dst=00:00:00:00:00:00/01:00:00:00:00:00, actions=goto_table:20&quot;</span>
 
 <span class="c1">## 多播和广播包，扔给table 22处理</span>
-ovs-ofctl add-flow br-int <span class="s2">&quot;table=2, priority=1, dl_dst=01:00:00:00:00:00/01:00:00:00:00:00 actions=goto_table:22&quot;</span>
+ovs-ofctl add-flow br-int <span class="s2">&quot;table=2, priority=1, dl_dst=01:00:00:00:00:00/01:00:00:00:00:00, actions=goto_table:22&quot;</span>
 
 <span class="c1">## 其余DROP</span>
 ovs-ofctl add-flow br-int <span class="s2">&quot;table=2, priority=0, actions=drop&quot;</span>
