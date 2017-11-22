@@ -84,4 +84,6 @@ ovs-vsctl add-port biv-200 poi-vm2
 
 ---
 
-经测试，使用iptables和ebtables对ovs端口不起任何作用，只对linux bridge的端口起作用
+1. 经测试，使用iptables和ebtables对ovs端口不起任何作用，只对linux bridge的端口起作用
+
+2. linux bridge和ovs通过veth或ovs patch-port相连的话，iptables、ebtables对linux bridge这端的限制是有效的
