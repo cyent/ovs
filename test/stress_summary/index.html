@@ -10,7 +10,7 @@
         <meta name="description" content="Open vSwitch学习笔记">
       
       
-        <link rel="canonical" href="https://cyent.github.io/ovs/appendix/nxm/">
+        <link rel="canonical" href="https://cyent.github.io/ovs/test/stress_summary/">
       
       
         <meta name="author" content="cyent">
@@ -22,7 +22,7 @@
     
     
       
-        <title>3. NXM - ovs学习 - cyent笔记</title>
+        <title>2.5. 结论 - ovs学习 - cyent笔记</title>
       
     
     
@@ -84,11 +84,15 @@
             
               
                 <span class="md-header-nav__parent">
-                  六. 附录
+                  五. 实验
+                </span>
+              
+                <span class="md-header-nav__parent">
+                  2. 性能测试
                 </span>
               
             
-            3. NXM
+            2.5. 结论
           
         </span>
       </div>
@@ -243,10 +247,12 @@
       
       
 
+  
 
-  <li class="md-nav__item md-nav__item--nested">
+
+  <li class="md-nav__item md-nav__item--active md-nav__item--nested">
     
-      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-5" type="checkbox" id="nav-5">
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-5" type="checkbox" id="nav-5" checked>
     
     <label class="md-nav__link" for="nav-5">
       五. 实验
@@ -264,7 +270,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../../test/test1/" title="1. 实验1" class="md-nav__link">
+    <a href="../test1/" title="1. 实验1" class="md-nav__link">
       1. 实验1
     </a>
   </li>
@@ -274,10 +280,12 @@
           
           
 
+  
 
-  <li class="md-nav__item md-nav__item--nested">
+
+  <li class="md-nav__item md-nav__item--active md-nav__item--nested">
     
-      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-5-2" type="checkbox" id="nav-5-2">
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-5-2" type="checkbox" id="nav-5-2" checked>
     
     <label class="md-nav__link" for="nav-5-2">
       2. 性能测试
@@ -295,7 +303,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../../test/stress_main/" title="2.1. 环境说明" class="md-nav__link">
+    <a href="../stress_main/" title="2.1. 环境说明" class="md-nav__link">
       2.1. 环境说明
     </a>
   </li>
@@ -307,7 +315,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../../test/stress_one/" title="2.2. 同宿主" class="md-nav__link">
+    <a href="../stress_one/" title="2.2. 同宿主" class="md-nav__link">
       2.2. 同宿主
     </a>
   </li>
@@ -319,7 +327,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../../test/stress_two_novxlan/" title="2.3. 不同宿主(无封装)" class="md-nav__link">
+    <a href="../stress_two_novxlan/" title="2.3. 不同宿主(无封装)" class="md-nav__link">
       2.3. 不同宿主(无封装)
     </a>
   </li>
@@ -331,7 +339,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../../test/stress_two_vxlan/" title="2.4. 不同宿主(vxlan封装)" class="md-nav__link">
+    <a href="../stress_two_vxlan/" title="2.4. 不同宿主(vxlan封装)" class="md-nav__link">
       2.4. 不同宿主(vxlan封装)
     </a>
   </li>
@@ -341,34 +349,71 @@
           
           
 
-
-  <li class="md-nav__item">
-    <a href="../../test/stress_summary/" title="2.5. 结论" class="md-nav__link">
-      2.5. 结论
-    </a>
-  </li>
-
-        
-      </ul>
-    </nav>
-  </li>
-
-        
-      </ul>
-    </nav>
-  </li>
-
-    
-      
-      
-      
-
   
 
 
-  <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+  <li class="md-nav__item md-nav__item--active">
     
-      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-6" type="checkbox" id="nav-6" checked>
+    <input class="md-toggle md-nav__toggle" data-md-toggle="toc" type="checkbox" id="toc">
+    
+    
+      <label class="md-nav__link md-nav__link--active" for="toc">
+        2.5. 结论
+      </label>
+    
+    <a href="./" title="2.5. 结论" class="md-nav__link md-nav__link--active">
+      2.5. 结论
+    </a>
+    
+      
+<nav class="md-nav md-nav--secondary">
+  
+  
+  
+    <label class="md-nav__title" for="toc">Table of contents</label>
+    <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#conntrack" title="conntrack影响" class="md-nav__link">
+    conntrack影响
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_1" title="性能比较" class="md-nav__link">
+    性能比较
+  </a>
+  
+</li>
+      
+      
+      
+    </ul>
+  
+</nav>
+    
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-6" type="checkbox" id="nav-6">
     
     <label class="md-nav__link" for="nav-6">
       六. 附录
@@ -386,7 +431,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../doc/" title="1. 参考资料" class="md-nav__link">
+    <a href="../../appendix/doc/" title="1. 参考资料" class="md-nav__link">
       1. 参考资料
     </a>
   </li>
@@ -398,7 +443,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../traffic/" title="2. ovs数据流量及限速" class="md-nav__link">
+    <a href="../../appendix/traffic/" title="2. ovs数据流量及限速" class="md-nav__link">
       2. ovs数据流量及限速
     </a>
   </li>
@@ -408,18 +453,11 @@
           
           
 
-  
 
-
-  <li class="md-nav__item md-nav__item--active">
-    
-    <input class="md-toggle md-nav__toggle" data-md-toggle="toc" type="checkbox" id="toc">
-    
-    
-    <a href="./" title="3. NXM" class="md-nav__link md-nav__link--active">
+  <li class="md-nav__item">
+    <a href="../../appendix/nxm/" title="3. NXM" class="md-nav__link">
       3. NXM
     </a>
-    
   </li>
 
         
@@ -429,7 +467,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../neutron/" title="4. Neutron流表分析" class="md-nav__link">
+    <a href="../../appendix/neutron/" title="4. Neutron流表分析" class="md-nav__link">
       4. Neutron流表分析
     </a>
   </li>
@@ -441,7 +479,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../mac_mask/" title="5. MAC地址掩码" class="md-nav__link">
+    <a href="../../appendix/mac_mask/" title="5. MAC地址掩码" class="md-nav__link">
       5. MAC地址掩码
     </a>
   </li>
@@ -453,7 +491,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../conntrack/" title="6. ovs模块会调用conntrack" class="md-nav__link">
+    <a href="../../appendix/conntrack/" title="6. ovs模块会调用conntrack" class="md-nav__link">
       6. ovs模块会调用conntrack
     </a>
   </li>
@@ -491,6 +529,27 @@
   
   
   
+    <label class="md-nav__title" for="toc">Table of contents</label>
+    <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#conntrack" title="conntrack影响" class="md-nav__link">
+    conntrack影响
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_1" title="性能比较" class="md-nav__link">
+    性能比较
+  </a>
+  
+</li>
+      
+      
+      
+    </ul>
+  
 </nav>
                   </div>
                 </div>
@@ -502,10 +561,13 @@
               
                 
                 
-                  <h1>3. NXM</h1>
+                  <h1>2.5. 结论</h1>
                 
-                <p>The OpenFlow 1.2 format, called OXM (OpenFlow  Extensible  Match),  was modeled  closely  on  an  extension  to OpenFlow 1.0 introduced in Open vSwitch 1.1 called NXM (Nicira Extended Match)</p>
-<p>man ovs-fields</p>
+                <h2 id="conntrack"><strong>conntrack影响</strong><a class="headerlink" href="#conntrack" title="Permanent link">&para;</a></h2>
+<hr />
+<p>由于ovs强制加载conntrack模块，因此需要大量ip和端口才能测出来，只能等到上线了才知道</p>
+<h2 id="_1"><strong>性能比较</strong><a class="headerlink" href="#_1" title="Permanent link">&para;</a></h2>
+<hr />
                 
                   
                 
@@ -524,7 +586,7 @@
     <div class="md-footer-nav">
       <nav class="md-footer-nav__inner md-grid">
         
-          <a href="../traffic/" title="2. ovs数据流量及限速" class="md-flex md-footer-nav__link md-footer-nav__link--prev" rel="prev">
+          <a href="../stress_two_vxlan/" title="2.4. 不同宿主(vxlan封装)" class="md-flex md-footer-nav__link md-footer-nav__link--prev" rel="prev">
             <div class="md-flex__cell md-flex__cell--shrink">
               <i class="md-icon md-icon--arrow-back md-footer-nav__button"></i>
             </div>
@@ -533,19 +595,19 @@
                 <span class="md-footer-nav__direction">
                   Previous
                 </span>
-                2. ovs数据流量及限速
+                2.4. 不同宿主(vxlan封装)
               </span>
             </div>
           </a>
         
         
-          <a href="../neutron/" title="4. Neutron流表分析" class="md-flex md-footer-nav__link md-footer-nav__link--next" rel="next">
+          <a href="../../appendix/doc/" title="1. 参考资料" class="md-flex md-footer-nav__link md-footer-nav__link--next" rel="next">
             <div class="md-flex__cell md-flex__cell--stretch md-footer-nav__title">
               <span class="md-flex__ellipsis">
                 <span class="md-footer-nav__direction">
                   Next
                 </span>
-                4. Neutron流表分析
+                1. 参考资料
               </span>
             </div>
             <div class="md-flex__cell md-flex__cell--shrink">

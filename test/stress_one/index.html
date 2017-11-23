@@ -10,7 +10,7 @@
         <meta name="description" content="Open vSwitch学习笔记">
       
       
-        <link rel="canonical" href="https://cyent.github.io/ovs/appendix/nxm/">
+        <link rel="canonical" href="https://cyent.github.io/ovs/test/stress_one/">
       
       
         <meta name="author" content="cyent">
@@ -22,7 +22,7 @@
     
     
       
-        <title>3. NXM - ovs学习 - cyent笔记</title>
+        <title>2.2. 同宿主 - ovs学习 - cyent笔记</title>
       
     
     
@@ -84,11 +84,15 @@
             
               
                 <span class="md-header-nav__parent">
-                  六. 附录
+                  五. 实验
+                </span>
+              
+                <span class="md-header-nav__parent">
+                  2. 性能测试
                 </span>
               
             
-            3. NXM
+            2.2. 同宿主
           
         </span>
       </div>
@@ -243,10 +247,12 @@
       
       
 
+  
 
-  <li class="md-nav__item md-nav__item--nested">
+
+  <li class="md-nav__item md-nav__item--active md-nav__item--nested">
     
-      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-5" type="checkbox" id="nav-5">
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-5" type="checkbox" id="nav-5" checked>
     
     <label class="md-nav__link" for="nav-5">
       五. 实验
@@ -264,7 +270,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../../test/test1/" title="1. 实验1" class="md-nav__link">
+    <a href="../test1/" title="1. 实验1" class="md-nav__link">
       1. 实验1
     </a>
   </li>
@@ -274,10 +280,12 @@
           
           
 
+  
 
-  <li class="md-nav__item md-nav__item--nested">
+
+  <li class="md-nav__item md-nav__item--active md-nav__item--nested">
     
-      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-5-2" type="checkbox" id="nav-5-2">
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-5-2" type="checkbox" id="nav-5-2" checked>
     
     <label class="md-nav__link" for="nav-5-2">
       2. 性能测试
@@ -295,7 +303,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../../test/stress_main/" title="2.1. 环境说明" class="md-nav__link">
+    <a href="../stress_main/" title="2.1. 环境说明" class="md-nav__link">
       2.1. 环境说明
     </a>
   </li>
@@ -305,11 +313,97 @@
           
           
 
+  
 
-  <li class="md-nav__item">
-    <a href="../../test/stress_one/" title="2.2. 同宿主" class="md-nav__link">
+
+  <li class="md-nav__item md-nav__item--active">
+    
+    <input class="md-toggle md-nav__toggle" data-md-toggle="toc" type="checkbox" id="toc">
+    
+    
+      <label class="md-nav__link md-nav__link--active" for="toc">
+        2.2. 同宿主
+      </label>
+    
+    <a href="./" title="2.2. 同宿主" class="md-nav__link md-nav__link--active">
       2.2. 同宿主
     </a>
+    
+      
+<nav class="md-nav md-nav--secondary">
+  
+  
+  
+    <label class="md-nav__title" for="toc">Table of contents</label>
+    <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#bridge" title="bridge" class="md-nav__link">
+    bridge
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#ns-nsveth" title="ns - ns（veth）" class="md-nav__link">
+    ns - ns（veth）
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#kvm-kvm" title="kvm - kvm" class="md-nav__link">
+    kvm - kvm
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#ovs" title="ovs" class="md-nav__link">
+    ovs
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#ns-nsveth_1" title="ns - ns（veth）" class="md-nav__link">
+    ns - ns（veth）
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ns-nsovs-port" title="ns - ns（ovs-port）" class="md-nav__link">
+    ns - ns（ovs-port）
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#kvm-kvm_1" title="kvm - kvm" class="md-nav__link">
+    kvm - kvm
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+      
+      
+    </ul>
+  
+</nav>
+    
   </li>
 
         
@@ -319,7 +413,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../../test/stress_two_novxlan/" title="2.3. 不同宿主(无封装)" class="md-nav__link">
+    <a href="../stress_two_novxlan/" title="2.3. 不同宿主(无封装)" class="md-nav__link">
       2.3. 不同宿主(无封装)
     </a>
   </li>
@@ -331,7 +425,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../../test/stress_two_vxlan/" title="2.4. 不同宿主(vxlan封装)" class="md-nav__link">
+    <a href="../stress_two_vxlan/" title="2.4. 不同宿主(vxlan封装)" class="md-nav__link">
       2.4. 不同宿主(vxlan封装)
     </a>
   </li>
@@ -343,7 +437,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../../test/stress_summary/" title="2.5. 结论" class="md-nav__link">
+    <a href="../stress_summary/" title="2.5. 结论" class="md-nav__link">
       2.5. 结论
     </a>
   </li>
@@ -363,12 +457,10 @@
       
       
 
-  
 
-
-  <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+  <li class="md-nav__item md-nav__item--nested">
     
-      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-6" type="checkbox" id="nav-6" checked>
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-6" type="checkbox" id="nav-6">
     
     <label class="md-nav__link" for="nav-6">
       六. 附录
@@ -386,7 +478,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../doc/" title="1. 参考资料" class="md-nav__link">
+    <a href="../../appendix/doc/" title="1. 参考资料" class="md-nav__link">
       1. 参考资料
     </a>
   </li>
@@ -398,7 +490,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../traffic/" title="2. ovs数据流量及限速" class="md-nav__link">
+    <a href="../../appendix/traffic/" title="2. ovs数据流量及限速" class="md-nav__link">
       2. ovs数据流量及限速
     </a>
   </li>
@@ -408,18 +500,11 @@
           
           
 
-  
 
-
-  <li class="md-nav__item md-nav__item--active">
-    
-    <input class="md-toggle md-nav__toggle" data-md-toggle="toc" type="checkbox" id="toc">
-    
-    
-    <a href="./" title="3. NXM" class="md-nav__link md-nav__link--active">
+  <li class="md-nav__item">
+    <a href="../../appendix/nxm/" title="3. NXM" class="md-nav__link">
       3. NXM
     </a>
-    
   </li>
 
         
@@ -429,7 +514,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../neutron/" title="4. Neutron流表分析" class="md-nav__link">
+    <a href="../../appendix/neutron/" title="4. Neutron流表分析" class="md-nav__link">
       4. Neutron流表分析
     </a>
   </li>
@@ -441,7 +526,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../mac_mask/" title="5. MAC地址掩码" class="md-nav__link">
+    <a href="../../appendix/mac_mask/" title="5. MAC地址掩码" class="md-nav__link">
       5. MAC地址掩码
     </a>
   </li>
@@ -453,7 +538,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../conntrack/" title="6. ovs模块会调用conntrack" class="md-nav__link">
+    <a href="../../appendix/conntrack/" title="6. ovs模块会调用conntrack" class="md-nav__link">
       6. ovs模块会调用conntrack
     </a>
   </li>
@@ -491,6 +576,74 @@
   
   
   
+    <label class="md-nav__title" for="toc">Table of contents</label>
+    <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#bridge" title="bridge" class="md-nav__link">
+    bridge
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#ns-nsveth" title="ns - ns（veth）" class="md-nav__link">
+    ns - ns（veth）
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#kvm-kvm" title="kvm - kvm" class="md-nav__link">
+    kvm - kvm
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#ovs" title="ovs" class="md-nav__link">
+    ovs
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#ns-nsveth_1" title="ns - ns（veth）" class="md-nav__link">
+    ns - ns（veth）
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ns-nsovs-port" title="ns - ns（ovs-port）" class="md-nav__link">
+    ns - ns（ovs-port）
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#kvm-kvm_1" title="kvm - kvm" class="md-nav__link">
+    kvm - kvm
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+      
+      
+    </ul>
+  
 </nav>
                   </div>
                 </div>
@@ -502,10 +655,102 @@
               
                 
                 
-                  <h1>3. NXM</h1>
+                  <h1>2.2. 同宿主</h1>
                 
-                <p>The OpenFlow 1.2 format, called OXM (OpenFlow  Extensible  Match),  was modeled  closely  on  an  extension  to OpenFlow 1.0 introduced in Open vSwitch 1.1 called NXM (Nicira Extended Match)</p>
-<p>man ovs-fields</p>
+                <h2 id="bridge"><strong>bridge</strong><a class="headerlink" href="#bridge" title="Permanent link">&para;</a></h2>
+<hr />
+<h3 id="ns-nsveth">ns - ns（veth）<a class="headerlink" href="#ns-nsveth" title="Permanent link">&para;</a></h3>
+<div class="codehilite"><pre><span></span>tcp: 10.7Gb/s
+udp:
+    client 4.93Gb/s
+    server 4.93Gb/s
+</pre></div>
+
+<details class="note"><summary>环境</summary><div class="codehilite"><pre><span></span>brctl addbr br1
+ip link set br1 up
+ip netns add ns1
+ip netns add ns2
+ip link add ns1-veth-in type veth peer name ns1-veth-out
+ip link add ns2-veth-in type veth peer name ns2-veth-out
+ip link set ns1-veth-in netns ns1
+ip link set ns2-veth-in netns ns2
+ip link set ns1-veth-out up
+ip link set ns2-veth-out up
+ip netns exec ns1 ip link set lo up
+ip netns exec ns2 ip link set lo up
+ip netns exec ns1 ifconfig ns1-veth-in 192.168.1.1 netmask 255.255.255.0 up
+ip netns exec ns2 ifconfig ns2-veth-in 192.168.1.2 netmask 255.255.255.0 up
+brctl addif br1 ns1-veth-out
+brctl addif br1 ns2-veth-out
+</pre></div>
+</details><h3 id="kvm-kvm">kvm - kvm<a class="headerlink" href="#kvm-kvm" title="Permanent link">&para;</a></h3>
+<div class="codehilite"><pre><span></span>tcp: 5.57Gb/s
+udp:
+    client 5.58Gb/s
+    server 5.39Gb/s
+</pre></div>
+
+<h2 id="ovs"><strong>ovs</strong><a class="headerlink" href="#ovs" title="Permanent link">&para;</a></h2>
+<hr />
+<h3 id="ns-nsveth_1">ns - ns（veth）<a class="headerlink" href="#ns-nsveth_1" title="Permanent link">&para;</a></h3>
+<div class="codehilite"><pre><span></span>tcp: 10.7Gb/s
+udp:
+    client 3.85Gb/s
+    server 3.85Gb/s
+</pre></div>
+
+<details class="note"><summary>环境</summary><div class="codehilite"><pre><span></span>ovs-vsctl add-br ovsbr
+ip netns add ns1
+ip netns add ns2
+ip link add ns1-veth-in type veth peer name ns1-veth-out
+ip link add ns2-veth-in type veth peer name ns2-veth-out
+ip link set ns1-veth-in netns ns1
+ip link set ns2-veth-in netns ns2
+ip link set ns1-veth-out up
+ip link set ns2-veth-out up
+ip netns exec ns1 ip link set lo up
+ip netns exec ns2 ip link set lo up
+ip netns exec ns1 ifconfig ns1-veth-in 192.168.1.1 netmask 255.255.255.0 up
+ip netns exec ns2 ifconfig ns2-veth-in 192.168.1.2 netmask 255.255.255.0 up
+ovs-vsctl add-port ovsbr ns1-veth-out
+ovs-vsctl add-port ovsbr ns2-veth-out
+</pre></div>
+</details><h3 id="ns-nsovs-port">ns - ns（ovs-port）<a class="headerlink" href="#ns-nsovs-port" title="Permanent link">&para;</a></h3>
+<p>ovs-port(internal)</p>
+<div class="codehilite"><pre><span></span>tcp: 10.7Gb/s
+udp:
+    client 3.91Gb/s
+    server 3.91Gb/s
+</pre></div>
+
+<details class="note"><summary>环境</summary><div class="codehilite"><pre><span></span>ovs-vsctl add-br ovsbr
+ovs-vsctl add-port ovsbr ns1 -- set interface ns1 type=internal
+ovs-vsctl add-port ovsbr ns2 -- set interface ns2 type=internal
+ip netns add ns1
+ip netns add ns2
+ip link set ns1 netns ns1
+ip link set ns2 netns ns2
+ip netns exec ns1 ip link set lo up
+ip netns exec ns2 ip link set lo up
+ip netns exec ns1 ifconfig ns1 192.168.1.1 netmask 255.255.255.0 up
+ip netns exec ns2 ifconfig ns2 192.168.1.2 netmask 255.255.255.0 up
+</pre></div>
+</details><h3 id="kvm-kvm_1">kvm - kvm<a class="headerlink" href="#kvm-kvm_1" title="Permanent link">&para;</a></h3>
+<div class="codehilite"><pre><span></span>tcp: 5.83Gb/s
+udp:
+    client 5.33Gb/s
+    server 5.18Gb/s
+</pre></div>
+
+<details class="note"><summary>xml配置</summary><div class="codehilite"><pre><span></span><span class="nt">&lt;interface</span> <span class="na">type=</span><span class="s">&#39;bridge&#39;</span><span class="nt">&gt;</span>
+  <span class="nt">&lt;mac</span> <span class="na">address=</span><span class="s">&#39;52:54:00:c8:3b:ea&#39;</span><span class="nt">/&gt;</span>
+  <span class="nt">&lt;source</span> <span class="na">bridge=</span><span class="s">&#39;ovsbr&#39;</span><span class="nt">/&gt;</span>
+<span class="hll">  <span class="nt">&lt;virtualport</span> <span class="na">type=</span><span class="s">&#39;openvswitch&#39;</span><span class="nt">/&gt;</span>
+</span>  <span class="nt">&lt;target</span> <span class="na">dev=</span><span class="s">&#39;vmeth0-vm1&#39;</span><span class="nt">/&gt;</span>
+  <span class="nt">&lt;model</span> <span class="na">type=</span><span class="s">&#39;virtio&#39;</span><span class="nt">/&gt;</span>
+<span class="nt">&lt;/interface&gt;</span>
+</pre></div>
+</details>
                 
                   
                 
@@ -524,7 +769,7 @@
     <div class="md-footer-nav">
       <nav class="md-footer-nav__inner md-grid">
         
-          <a href="../traffic/" title="2. ovs数据流量及限速" class="md-flex md-footer-nav__link md-footer-nav__link--prev" rel="prev">
+          <a href="../stress_main/" title="2.1. 环境说明" class="md-flex md-footer-nav__link md-footer-nav__link--prev" rel="prev">
             <div class="md-flex__cell md-flex__cell--shrink">
               <i class="md-icon md-icon--arrow-back md-footer-nav__button"></i>
             </div>
@@ -533,19 +778,19 @@
                 <span class="md-footer-nav__direction">
                   Previous
                 </span>
-                2. ovs数据流量及限速
+                2.1. 环境说明
               </span>
             </div>
           </a>
         
         
-          <a href="../neutron/" title="4. Neutron流表分析" class="md-flex md-footer-nav__link md-footer-nav__link--next" rel="next">
+          <a href="../stress_two_novxlan/" title="2.3. 不同宿主(无封装)" class="md-flex md-footer-nav__link md-footer-nav__link--next" rel="next">
             <div class="md-flex__cell md-flex__cell--stretch md-footer-nav__title">
               <span class="md-flex__ellipsis">
                 <span class="md-footer-nav__direction">
                   Next
                 </span>
-                4. Neutron流表分析
+                2.3. 不同宿主(无封装)
               </span>
             </div>
             <div class="md-flex__cell md-flex__cell--shrink">
