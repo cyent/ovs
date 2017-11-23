@@ -60,7 +60,12 @@ pages:
     - 四. openflow: openflow.md
     - 五. 实验:
         - 1. 实验1: test/test1.md
-        - 2. 性能测试: test/stress.md
+        - 2. 性能测试:
+            - 2.1. 环境说明: test/stress_main.md
+            - 2.2. 同宿主: test/stress_one.md
+            - 2.3. 不同宿主(无封装): test/stress_two_novxlan.md
+            - 2.4. 不同宿主(vxlan封装): test/stress_two_vxlan.md
+            - 2.5. 结论: test/stress_summary.md
     - 六. 附录:
         - 1. 参考资料: appendix/doc.md
         - 2. ovs数据流量及限速: appendix/traffic.md
