@@ -6,20 +6,24 @@ site_url: https://cyent.github.io/ovs/
 repo_name: 'cyent/ovs'
 repo_url: 'https://github.com/cyent/ovs'
 
-theme: material
-
-extra:
+theme:
+  name: material
   palette:
     primary: 'Blue Grey'
     accent: 'Pink'
   feature:
     tabs: false
-  social:
-    - type: github
-      link: https://github.com/cyent
   #font:
     #text: 'Ubuntu'
     #code: 'Ubuntu Mono'
+  language: 'zh'
+
+extra:
+  social:
+    - type: github
+      link: https://github.com/cyent
+  search:
+    language: 'jp'
 
 markdown_extensions:
     - admonition
